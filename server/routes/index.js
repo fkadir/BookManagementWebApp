@@ -2,7 +2,7 @@ var express = require("express");
 
 var User = require("../model/user");
 var MyBooks = require("../model/myBooks");
-var BookRating = require("../model/bookRating");
+// var BookRating = require("../model/bookRating");
 var mongoose = require("mongoose");
 
 var router = express.Router();
