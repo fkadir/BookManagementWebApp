@@ -28,7 +28,10 @@ router.get("/books/:page", function (req, res, next) {
           // bookIsbnIdentifier: item.volumeInfo.industryIdentifiers[1].identifier,
           bookGenre: item.volumeInfo.categories,
           bookAvgRating: item.volumeInfo.avgRating,
-          bookCover: item.volumeInfo.imageLinks.thumbnail,
+          // check if thumbnail is null
+          bookcover: item.volumeInfo.imageLinks.thumbnail
+            ? item.volumeInfo.imageLinks.thumbnail
+            : null,
         }))
       );
     }); // mapping json & the respond you send to the caller of your api
