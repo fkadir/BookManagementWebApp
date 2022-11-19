@@ -1,32 +1,33 @@
 var express = require("express");
 var User = require("../model/user");
+var mongoose = require('mongoose');
 var router = express.Router();
 
 /* get all users */
-router.get("/users", function (req, res, next) {
-  let searchQuery = {};
-
-  if (req.query.name) searchQuery = { name: req.query.name };
-
-  User.find(searchQuery, function (err, users) {
-    if (err) {
-      res.status(400);
-      res.send();
-    }
-
-    console.log("returning all the users.");
-    res.send(users);
-  });
+router.get("/", function (req, res, next) {
+  console.log("arrived-get");
+  res.json({ mssg: "GET all users" });
 });
 
 /* create new user*/
-router.post("/", function (req, res, next) {});
+router.post("/", function (req, res, next) {
+  console.log("arrived-post");
+  res.json({ mssg: "CREATE user" });
+});
 
 /* update user*/
 // or put?
-router.patch("/", function (req, res, next) {});
+router.patch("/", function (req, res, next) {
+  console.log("arrived-patch");
+  res.json({ mssg: "UPDATE user" });
+});
 
 /* delete user*/
-router.post("/", function (req, res, next) {});
+router.delete("/", function (req, res, next) {
+  console.log("arrived-post");
+  res.json({ mssg: "DELETE user" });
+});
 
 module.exports = router;
+
+// https://github.com/paul-kelly-dit/web-application-architecture/blob/master/mongo/mern-backend/routes/index.js
