@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var myBooksSchema = new Schema({
   bookDataId: String,
   status: String,
-  // rating: Number,
+  rating: Number,
 });
 
 // Create a model.
