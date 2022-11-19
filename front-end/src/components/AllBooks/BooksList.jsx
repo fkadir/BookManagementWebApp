@@ -1,7 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Card } from "react-bootstrap";
 
-function BooksList() {
+/* Component: displays all the books in the main page */
+
+const BooksList = () => {
   const [backendData, setBackendData] = useState([]);
 
   const fetchData = (currentPage) => {
@@ -25,28 +28,32 @@ function BooksList() {
     setCurrentPage(currentPage + 1); //increments page
   };
 
+  // displays all books in cards
   return (
-    <>
+    <div>
       <div>
         {backendData.length === 0 ? (
           <p>Loading...</p>
         ) : (
           backendData.map((allBooks) => (
-            <table>
-              <tr className="item">
-                <td className="title">{`Title: ${allBooks.bookTitle}`}</td>
-                <td className="authors">{`Authors: ${allBooks.bookAuthors}`}</td>
-                <td className="avg-rating">{`Average Rating: ${allBooks.bookAvgRating}`}</td>
-              </tr>
-            </table>
+            <Card border="secondary">
+              <Card.Body>
+                <Card.Title className="title">{`Title: ${allBooks.bookTitle}`}</Card.Title>
+                <Card.Subtitle className="authors">{`Authors: ${allBooks.bookAuthors}`}</Card.Subtitle>
+                <Card.Text className="avg-rating">
+                  {" "}
+                  {`Average Rating: ${allBooks.bookAvgRating}`}
+                </Card.Text>
+              </Card.Body>
+            </Card>
           ))
         )}
       </div>
       <div>
         <button onClick={handleMoreClick}>More...</button>
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default BooksList;
