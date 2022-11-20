@@ -59,7 +59,7 @@ const CreateUser = () => {
         <label className="">Email</label>
         <input
           type="text"
-          placeholder="example@gmail.com"
+          placeholder="name@example.com"
           value={email}
           onChange={(e) => handleEmailFieldChange(e)}
         />
