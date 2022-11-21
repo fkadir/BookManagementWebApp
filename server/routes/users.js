@@ -6,10 +6,11 @@ var router = express.Router();
 // get and post methoddss
 // https://github.com/paul-kelly-dit/web-application-architecture/blob/master/mongo/mern-backend/routes/index.js
 
-/* get all users */
+/* get users */
 router.get("/", function (req, res, next) {
   let searchQuery = {};
 
+  //filter users by username
   if (req.query.username) searchQuery = { username: req.query.username };
 
   User.find(searchQuery, function (err, users) {
@@ -41,7 +42,6 @@ router.post("/", function (req, res, next) {
 });
 
 /* update user*/
-// or put?
 router.patch("/", function (req, res, next) {
   let searchQuery = {};
 
@@ -58,7 +58,6 @@ router.patch("/", function (req, res, next) {
 
 /* delete user*/
 router.delete("/", function (req, res, next) {
-  console.log("arrived-delete");
   let searchQuery = {};
 
   if (req.query.id) searchQuery = { _id: req.query.id };
