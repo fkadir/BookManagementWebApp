@@ -80,6 +80,13 @@ const CreateUser = () => {
           onChange={(e) => handlePwFieldChange(e)}
         />
 
+        <label className="">Repeat Password</label>
+        <input
+          type="text"
+          placeholder=""
+          value={pw}
+          onChange={(e) => handlePwFieldChange(e)}
+        />
         <button className="" onClick={handleCreateUser}>
           Create User
         </button>
