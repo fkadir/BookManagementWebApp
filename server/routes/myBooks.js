@@ -3,14 +3,18 @@ var MyBooks = require("../model/myBooks");
 var mongoose = require("mongoose");
 var router = express.Router();
 
-/*get my books*/
+/*get my books for all users or specific user*/
 router.get("/", function (req, res, next) {
   let searchQuery = {};
 
-  // filter mybooks by author, title or status
-  if (req.query.title) searchQuery = { title: req.query.title };
-  if (req.query.author) searchQuery = { author: req.query.author };
-  if (req.query.status) searchQuery = { status: req.query.status };
+  // filter mybooks by user, author, title and/or status
+  if (req.query.title)
+    searchQuery = { userId: req.query.user, title: req.query.title };
+  else if (req.query.author)
+    searchQuery = { userId: req.query.user, author: req.query.author };
+  else if (req.query.status)
+    searchQuery = { userId: req.query.user, status: req.query.status };
+  else if (req.query.user) searchQuery = { userId: req.query.user };
 
   MyBooks.find(searchQuery, function (err, mybooks) {
     if (err) {
@@ -48,6 +52,7 @@ router.patch("/", function (req, res, next) {
   // determine the book by MyBooks_id
   if (req.query.id) searchQuery = { _id: req.query.id };
 
+  //in the req.body all to be changed fields need to be specified
   MyBooks.updateOne(searchQuery, { $set: req.body }, function (err, updated) {
     if (err) {
       res.status(400);

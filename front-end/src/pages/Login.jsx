@@ -4,9 +4,11 @@ import NavbarComp from "../components/Navbar.jsx";
 import CreateUser from "../components/Users/CreateUser";
 import LoginAuth from "../components/LoginAuth";
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 function Login() {
-  const [state, setState] = useState(true);
+  // false = create account functionality, true = login functionality
+  const [state, setState] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,18 +23,24 @@ function Login() {
   if (state) {
     return (
       <div className="Login">
-        <NavbarComp />
+        {/* logo! */}
         <LoginAuth />
-        <button onClick={handleCreateAccount}> Create account? </button>
+        <Button variant="light" onClick={handleCreateAccount}>
+          {" "}
+          Create an account?{" "}
+        </Button>
         {/* <footer /> */}
       </div>
     );
   } else {
     return (
-      <div className="Login">
-        <NavbarComp />
+      <div className="CreateUser">
+        {/* logo! */}
         <CreateUser />
-        <button onClick={handleLogin}> Login? </button>
+        <Button variant="light" onClick={handleLogin}>
+          {" "}
+          Already have an account?{" "}
+        </Button>
         {/* <footer /> */}
       </div>
     );

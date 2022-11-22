@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 // Define a schema.
 var myBooksSchema = new Schema({
+  userId: String,
   bookDataId: String,
   title: String,
   author: Array,

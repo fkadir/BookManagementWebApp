@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 //potential for later when actually implementing it:
 // https://www.geeksforgeeks.org/how-to-show-and-hide-password-in-reactjs/ ???
@@ -20,13 +21,22 @@ const CreateUser = () => {
     setPw(event.target.value);
   };
 
+  // const handlePwCheck = (event) => {
+  //   event.preventDefault;
+  //   if (event.target.value == pw) {
+  //     return true;
+  //   } else return false;
+  // };
+
   const handleEmailFieldChange = (event) => {
     event.preventDefault();
     setEmail(event.target.value);
+    console.log(email);
   };
 
   const handleCreateUser = async (event) => {
     event.preventDefault();
+    console.log("clicked :)");
     setStatusMessage("");
 
     let user = {
@@ -54,46 +64,93 @@ const CreateUser = () => {
   };
 
   return (
-    <div className="">
-      <div className="">
-        <label className="">Email</label>
-        <input
-          type="text"
-          placeholder="name@example.com"
-          value={email}
-          onChange={(e) => handleEmailFieldChange(e)}
-        />
+    <div className="container mt-3">
+      <Form>
+        <Form.Group>
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="name@example.com"
+            value={email}
+            onChange={(e) => handleEmailFieldChange(e)}
+          />
+        </Form.Group>
 
-        <label className="">Username</label>
-        <input
-          type="text"
-          placeholder=""
-          value={username}
-          onChange={(e) => handleUsernameFieldChange(e)}
-        />
+        <Form.Group>
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={username}
+            onChange={(e) => handleUsernameFieldChange(e)}
+          />
+        </Form.Group>
 
-        <label className="">Password</label>
-        <input
-          type="text"
-          placeholder=""
-          value={pw}
-          onChange={(e) => handlePwFieldChange(e)}
-        />
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={pw}
+            onChange={(e) => handlePwFieldChange(e)}
+          />
+        </Form.Group>
 
-        <label className="">Repeat Password</label>
-        <input
-          type="text"
-          placeholder=""
-          value={pw}
-          onChange={(e) => handlePwFieldChange(e)}
-        />
-        <button className="" onClick={handleCreateUser}>
-          Create User
-        </button>
-        <p className="">{statusMessage}</p>
-      </div>
+        {/* validation! */}
+        <Form.Group>
+          <Form.Label>Repeat Password</Form.Label>
+          <Form.Control type="text" placeholder="" />
+        </Form.Group>
+        <Button variant="light" onClick={handleCreateUser}>
+          {" "}
+          create account
+        </Button>
+      </Form>
+      {/* forgot password??? */}
     </div>
   );
 };
 
 export default CreateUser;
+
+{
+  /* <div className="">
+<div className="">
+  <label className="">Email</label>
+  <input
+    type="text"
+    placeholder="name@example.com"
+    value={email}
+    onChange={(e) => handleEmailFieldChange(e)}
+  />
+
+  <label className="">Username</label>
+  <input
+    type="text"
+    placeholder=""
+    value={username}
+    onChange={(e) => handleUsernameFieldChange(e)}
+  />
+
+  <label className="">Password</label>
+  <input
+    type="text"
+    placeholder=""
+    value={pw}
+    onChange={(e) => handlePwFieldChange(e)}
+  />
+
+  <label className="">Repeat Password</label>
+  <input
+    type="text"
+    placeholder=""
+    value={pw}
+    onChange={(e) => handlePwFieldChange(e)}
+  />
+  <button className="" onClick={handleCreateUser}>
+    Create User
+  </button>
+  <p className="">{statusMessage}</p>
+</div>
+</div> */
+}
