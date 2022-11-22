@@ -1,6 +1,6 @@
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavbarComp from "../components/Navbar.jsx";
+import Logo from "../components/Logo";
 import CreateUser from "../components/Users/CreateUser";
 import LoginAuth from "../components/LoginAuth";
 import React, { useState } from "react";
@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 
 function Login() {
   // false = create account functionality, true = login functionality
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(true);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,11 +22,10 @@ function Login() {
 
   if (state) {
     return (
-      <div className="Login">
-        {/* logo! */}
+      <div>
+        <Logo />
         <LoginAuth />
         <Button variant="light" onClick={handleCreateAccount}>
-          {" "}
           Create an account?{" "}
         </Button>
         {/* <footer /> */}
@@ -34,11 +33,10 @@ function Login() {
     );
   } else {
     return (
-      <div className="CreateUser">
-        {/* logo! */}
+      <div>
+        <Logo />
         <CreateUser />
         <Button variant="light" onClick={handleLogin}>
-          {" "}
           Already have an account?{" "}
         </Button>
         {/* <footer /> */}

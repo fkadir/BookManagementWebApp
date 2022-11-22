@@ -18,8 +18,6 @@ router.get("/", function (req, res, next) {
       res.status(400);
       res.send();
     }
-
-    console.log("returning all the users.");
     res.send(users);
   });
 });

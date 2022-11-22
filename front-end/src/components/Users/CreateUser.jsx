@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Container, Form } from "react-bootstrap";
+import "./Login.css";
 
 //password validation from: https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
 
 //ref: code from createuser lab4
 const CreateUser = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
-
   const formSchema = Yup.object().shape({
+    email: Yup.string().email().required("email is mandatory"),
+    username: Yup.string().required("username is mandatory"),
     password: Yup.string()
       .required("Password is mandatory")
       .min(6, "Password must be 6 char long"),
@@ -28,9 +28,9 @@ const CreateUser = () => {
     setStatusMessage("");
 
     let user = {
-      username: username,
-      pw: data.password,
-      email: email,
+      username: data.username,
+      password: data.password,
+      email: data.email,
     };
 
     try {
@@ -40,52 +40,41 @@ const CreateUser = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setStatusMessage("User " + user.username + " created");
-        });
+      }).then((response) => response.json());
     } catch (err) {
       // Remediation logic
       setStatusMessage("There was an error creating the user");
     }
   }
 
-  const handleEmailFieldChange = (event) => {
-    event.preventDefault();
-    setEmail(event.target.value);
-  };
-
-  const handleUsernameFieldChange = (event) => {
-    event.preventDefault();
-    setUsername(event.target.value);
-  };
-
   return (
-    <div className="container mt-5">
+    <Container bg="light" fluid="sm">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
-          <Form.Label>Email address</Form.Label>
+          <Form.Label className="headings-bold">Email address</Form.Label>
           <Form.Control
             type="email"
             placeholder="name@example.com"
-            value={email}
-            onChange={(e) => handleEmailFieldChange(e)}
+            name="email"
+            {...register("email")}
+            className={`form-control ${errors.email ? "is-invalid" : ""}`}
           />
+          <div className="invalid-feedback">{errors.email?.message}</div>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Username</Form.Label>
+          <Form.Label className="headings-bold">Username</Form.Label>
           <Form.Control
             type="text"
-            placeholder=""
-            value={username}
-            onChange={(e) => handleUsernameFieldChange(e)}
+            name="username"
+            {...register("username")}
+            className={`form-control ${errors.username ? "is-invalid" : ""}`}
           />
+          <div className="invalid-feedback">{errors.username?.message}</div>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="headings-bold">Password</Form.Label>
           <Form.Control
             name="password"
             type="password"
@@ -96,7 +85,7 @@ const CreateUser = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label className="headings-bold">Confirm Password</Form.Label>
           <Form.Control
             name="pwCheck"
             type="password"
@@ -106,15 +95,16 @@ const CreateUser = () => {
           <div className="invalid-feedback">{errors.pwCheck?.message}</div>
         </Form.Group>
 
-        <div className="mt-3">
-          <Button type="submit" variant="light">
-            {" "}
-            create account
-          </Button>
-        </div>
+        <Button className="headings-bold" type="submit" variant="light">
+          {" "}
+          create account
+        </Button>
+        <Alert variant={statusMessage != "" ? "danger" : null}>
+          {" "}
+          {statusMessage}
+        </Alert>
       </Form>
-      {/* forgot password??? */}
-    </div>
+    </Container>
   );
 };
 
