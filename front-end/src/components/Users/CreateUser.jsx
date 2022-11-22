@@ -24,15 +24,36 @@ const CreateUser = () => {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  function onSubmit(data) {
+  function onSubmit(input) {
     setStatusMessage("");
+    try {
+      fetch(`http://localhost:3100/users?username=${input.username}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // ensure username is unique
+          if (data[0].username) {
+            setStatusMessage("Username already in use ");
+          } else {
+            let user = {
+              username: input.username,
+              password: input.password,
+              email: input.email,
+            };
+            handleCreateUser(user);
+          }
+        });
+    } catch (err) {
+      setStatusMessage("There was an error creating your account");
+    }
+  }
 
-    let user = {
-      username: data.username,
-      password: data.password,
-      email: data.email,
-    };
-
+  function handleCreateUser(user) {
     try {
       fetch("http://localhost:3100/users", {
         method: "POST",
@@ -48,9 +69,9 @@ const CreateUser = () => {
   }
 
   return (
-    <Container bg="light" fluid="sm">
+    <Container fluid>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group>
+        <Form.Group className="inputs">
           <Form.Label className="headings-bold">Email address</Form.Label>
           <Form.Control
             type="email"
@@ -62,18 +83,18 @@ const CreateUser = () => {
           <div className="invalid-feedback">{errors.email?.message}</div>
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="inputs">
           <Form.Label className="headings-bold">Username</Form.Label>
           <Form.Control
             type="text"
             name="username"
             {...register("username")}
-            className={`form-control ${errors.username ? "is-invalid" : ""}`}
+            className={` form-control ${errors.username ? "is-invalid" : ""}`}
           />
           <div className="invalid-feedback">{errors.username?.message}</div>
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="inputs">
           <Form.Label className="headings-bold">Password</Form.Label>
           <Form.Control
             name="password"
@@ -84,7 +105,7 @@ const CreateUser = () => {
           <div className="invalid-feedback">{errors.password?.message}</div>
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="inputs">
           <Form.Label className="headings-bold">Confirm Password</Form.Label>
           <Form.Control
             name="pwCheck"
@@ -95,7 +116,7 @@ const CreateUser = () => {
           <div className="invalid-feedback">{errors.pwCheck?.message}</div>
         </Form.Group>
 
-        <Button className="headings-bold" type="submit" variant="light">
+        <Button className="headings-bold inputs" type="submit" variant="light">
           {" "}
           create account
         </Button>

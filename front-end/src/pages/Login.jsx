@@ -36,7 +36,7 @@ function Login() {
       <div>
         <Logo />
         <CreateUser />
-        <Button variant="light" onClick={handleLogin}>
+        <Button className="inputs" variant="light" onClick={handleLogin}>
           Already have an account?{" "}
         </Button>
         {/* <footer /> */}

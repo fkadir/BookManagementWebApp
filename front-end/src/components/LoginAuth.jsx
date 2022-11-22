@@ -32,7 +32,7 @@ const LoginAuth = () => {
           if (data[0].password == input.password) {
             setUserId(data[0]._id);
             setUsername(data[0].username);
-            console.log(`rendering main page for ${userId}`);
+            console.log(`rendering main page for ${username}`);
             // ACTUALLY RENDER MAIN PAGE AND SHIT???
           } else {
             setStatusMessage("Username or Password was incorrect");
@@ -45,9 +45,9 @@ const LoginAuth = () => {
   }
 
   return (
-    <Container>
+    <Container fluid>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group>
+        <Form.Group className="inputs">
           <Form.Label className="headings-bold">Username</Form.Label>
           <Form.Control
             type="text"
@@ -58,10 +58,10 @@ const LoginAuth = () => {
           <div className="invalid-feedback">{errors.username?.message}</div>
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="inputs">
           <Form.Label className="headings-bold">Password</Form.Label>
           <Form.Control
-            type="text"
+            type="password"
             name="password"
             {...register("password")}
             className={`form-control ${errors.password ? "is-invalid" : ""}`}
@@ -69,7 +69,7 @@ const LoginAuth = () => {
           <div className="invalid-feedback">{errors.password?.message}</div>
         </Form.Group>
 
-        <Button className="headings-bold" type="submit" variant="light">
+        <Button className="headings-bold inputs" type="submit" variant="light">
           Login
         </Button>
         <Alert variant={statusMessage ? "danger" : null}>
