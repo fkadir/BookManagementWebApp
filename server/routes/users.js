@@ -10,8 +10,9 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   let searchQuery = {};
 
-  //filter users by username
+  //filter users by username or email
   if (req.query.username) searchQuery = { username: req.query.username };
+  if (req.query.email) searchQuery = { email: req.query.email };
 
   User.find(searchQuery, function (err, users) {
     if (err) {
