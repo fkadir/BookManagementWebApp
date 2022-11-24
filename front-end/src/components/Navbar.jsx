@@ -8,9 +8,9 @@ import "./Navbar.css";
 const NavbarComp = () => {
   return (
     // https://react-bootstrap.netlify.app/components/navbar/#rb-docs-content
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="md" sticky="top">
       <Container className="navbar-links" fluid>
-        <Navbar.Brand href="#" class="d-flex align-items-center">
+        <Navbar.Brand href="/" className="d-flex align-items-center">
           <img
             width="100"
             height="100"

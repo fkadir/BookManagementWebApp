@@ -6,7 +6,7 @@ import "./Navbar.css";
 const Logo = () => {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#" class="d-flex align-items-left">
+      <Navbar.Brand href="#" className="d-flex align-items-left">
         <img
           width="100"
           height="100"

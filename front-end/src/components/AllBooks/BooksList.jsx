@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import { FaStar } from "react-icons/fa";
 
 /* Component: displays all the books in the main page */
 
@@ -31,6 +32,7 @@ const BooksList = () => {
   // displays all books in cards
   return (
     <div>
+      <h1 className="booklist-title"> All Books</h1>
       <div>
         {backendData.length === 0 ? (
           <p>Loading...</p>
@@ -38,6 +40,7 @@ const BooksList = () => {
           backendData.map((allBooks) => (
             <Card border="secondary">
               <Card.Body>
+                <Card.Img variant="left" src={allBooks.bookcover} />
                 <Card.Title className="title">{`Title: ${allBooks.bookTitle}`}</Card.Title>
                 <Card.Subtitle className="authors">{`Authors: ${allBooks.bookAuthors}`}</Card.Subtitle>
                 <Card.Text className="avg-rating">
@@ -50,7 +53,7 @@ const BooksList = () => {
         )}
       </div>
       <div>
-        <button onClick={handleMoreClick}>More...</button>
+        <Button onClick={handleMoreClick}>More...</Button>
       </div>
     </div>
   );
