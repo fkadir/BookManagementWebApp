@@ -45,6 +45,7 @@ router.patch("/", function (req, res, next) {
   let searchQuery = {};
 
   if (req.query.id) searchQuery = { _id: req.query.id };
+  if (req.query.username) searchQuery = { username: req.query.username };
 
   User.updateOne(searchQuery, { $set: req.body }, function (err, updated) {
     if (err) {

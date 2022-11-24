@@ -5,12 +5,17 @@ import CreateUser from "../components/Users/CreateUser";
 import LoginAuth from "../components/LoginAuth";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ communicateLogin }) {
   // false = create account functionality, true = login functionality
   const [state, setState] = useState(true);
 
-  const handleLogin = (e) => {
+  //maybe unnecessary??
+  // null =  not loggedin, username = loggedin
+  // const [user, setUser] = useState(null);
+
+  const handleSignIn = (e) => {
     e.preventDefault();
     setState(true);
   };
@@ -24,7 +29,12 @@ function Login() {
     return (
       <div>
         <Logo />
-        <LoginAuth />
+        <LoginAuth
+          handleLogin={(username) => {
+            // setUser(username);
+            communicateLogin(username);
+          }}
+        />
         <Button variant="light" onClick={handleCreateAccount}>
           Create an account?{" "}
         </Button>
@@ -36,7 +46,7 @@ function Login() {
       <div>
         <Logo />
         <CreateUser />
-        <Button className="inputs" variant="light" onClick={handleLogin}>
+        <Button className="inputs" variant="light" onClick={handleSignIn}>
           Already have an account?{" "}
         </Button>
         {/* <footer /> */}
