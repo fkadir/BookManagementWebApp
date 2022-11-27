@@ -10,7 +10,7 @@ var router = express.Router();
 
 // code adapted from: https://github.com/coding-with-chaim/forgot-password-code/tree/master/auth
 
-router.post("/forgot", (req, res) => {
+router.post("/forgot", (req, res, next) => {
   try {
     userEmail = req.query.email;
     searchQuery = { email: userEmail };
@@ -33,7 +33,7 @@ router.post("/forgot", (req, res) => {
           res.send({ id: newResetRequest._id });
         }
       });
-      sendResetLink(userEmail, newResetRequest._id);
+      // sendResetLink(userEmail, newResetRequest._id);
     });
 
     res.status(200);
@@ -42,19 +42,28 @@ router.post("/forgot", (req, res) => {
   }
 });
 
-// yet to be adapted:
-// router.patch("/reset", (req, res) => {
-//   const thisRequest = getResetRequest(req.body.id);
-//   if (thisRequest) {
-//     const user = getUser(thisRequest.email);
-//     bcrypt.hash(req.body.password, 10).then((hashed) => {
-//       user.password = hashed;
-//       updateUser(user);
-//       res.status(204).json();
-//     });
-//   } else {
-//     res.status(404).json();
-//   }
-// });
+router.patch("/reset", (req, res, next) => {
+  const thisRequest = { _id: req.query.id };
+
+  resetRequest.find(thisRequest, function (err, requestResult) {
+    if (err) {
+      res.status(400);
+      res.send();
+    }
+
+    var searchQuery = { email: requestResult[0].email };
+    User.updateOne(
+      searchQuery,
+      { $set: { password: "hello300" } }, //req.body.password
+      function (err, updated) {
+        if (err) {
+          res.status(404);
+          res.send();
+        }
+        res.send(updated);
+      }
+    );
+  });
+});
 
 module.exports = router;

@@ -77,7 +77,9 @@ const LoginAuth = ({ handleLogin }) => {
           />
           <div className="invalid-feedback">{errors.password?.message}</div>
         </Form.Group>
-
+        <p>
+          <a href="./login/forgot">Forgot Your Password?</a>
+        </p>
         <Button className="headings-bold inputs" type="submit" variant="light">
           Login
         </Button>
@@ -85,7 +87,6 @@ const LoginAuth = ({ handleLogin }) => {
           {" "}
           {statusMessage}
         </Alert>
-        {/* forgot password??? password recovery */}
       </Form>
     </Container>
   );

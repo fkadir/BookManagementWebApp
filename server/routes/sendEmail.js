@@ -2,7 +2,8 @@ var nodemailer = require("nodemailer");
 
 //code adapted from: w3schools.com/nodejs/nodejs_email.asp
 
-//doesnt work yet following error: Error: connect ETIMEDOUT 74.125.193.108:465
+//doesnt work yet following error: Error: connect ETIMEDOUT 74.125.193.108:465, problem for later
+//change to outlook?
 function sendResetLink(email, id) {
   var transporter = nodemailer.createTransport({
     service: "gmail",
