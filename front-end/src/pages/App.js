@@ -9,7 +9,7 @@ import { useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
-import Protected from "./Protected";
+// import Protected from "./Protected";
 
 /*Page protection code adapted from https://www.makeuseof.com/create-protected-route-in-react/*/
 
