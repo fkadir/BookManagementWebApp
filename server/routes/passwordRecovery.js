@@ -25,11 +25,12 @@ router.post("/forgot", (req, res, next) => {
 
         newResetRequest.save(function (err) {
           if (err) {
+            console.log(err);
             res.status(400);
             res.send({ msg: "Link could not be send " });
           } else {
-            console.log("reset request created!");
-            // sendResetLink(req.query.email, newResetRequest._id);
+            sendResetLink(req.query.email, newResetRequest._id);
+
             res.status(200);
             res.send({ msg: "" });
           }
@@ -44,26 +45,37 @@ router.post("/forgot", (req, res, next) => {
 });
 
 router.patch("/reset", (req, res, next) => {
-  const thisRequest = { _id: req.query.id };
+  const thisRequest = req.body.id;
 
+  // find reset request's email
   resetRequest.find(thisRequest, function (err, requestResult) {
     if (err) {
       res.status(400);
       res.send();
     }
 
+    // update user's password by email
     var searchQuery = { email: requestResult[0].email };
     User.updateOne(
       searchQuery,
-      { $set: { password: "hello300" } }, //req.body.password
+      { $set: { password: req.body.password } }, //
       function (err, updated) {
         if (err) {
           res.status(404);
-          res.send();
+          res.send({ msg: "Password could not be updated" });
         }
-        res.send(updated);
       }
     );
+  });
+
+  // delete reset request
+  resetRequest.deleteOne(thisRequest, function (err, updated) {
+    if (err) {
+      res.status(400);
+      res.send({ msg: "Request could not be completed" });
+    }
+    res.status(200);
+    res.send({ msg: "" });
   });
 });
 

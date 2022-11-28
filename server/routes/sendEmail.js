@@ -1,4 +1,5 @@
 var nodemailer = require("nodemailer");
+const SMTPTransport = require("nodemailer/lib/smtp-transport");
 
 //code adapted from: w3schools.com/nodejs/nodejs_email.asp
 
@@ -6,21 +7,25 @@ var nodemailer = require("nodemailer");
 //change to outlook?
 function sendResetLink(email, id) {
   var transporter = nodemailer.createTransport({
-    service: "gmail",
+    //new SMTPTransport(
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    secureConnection: false,
     tls: {
+      ciphers: "SSLv3",
       rejectUnauthorized: false,
     },
     auth: {
-      user: "bookmarked22@gmail.com",
-      pass: "bookmarked22!",
+      user: "fennakadir@outlook.com",
+      pass: "Fenshi26",
     },
   });
 
   var mailOptions = {
-    from: "bookmarked22@gmail.com",
+    from: "fennakadir@outlook.com",
     to: email,
     subject: "Reset password instructions",
-    text: `To reset your password, please click on this link: http://localhost:3100/reset/${id}`,
+    text: `To reset your password, please click on this link: http://localhost:3100/login/reset/${id}`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
