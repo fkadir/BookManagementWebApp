@@ -15,7 +15,7 @@ function Login({ communicateLogin }) {
 
   //maybe?
   // null =  not loggedin, username = loggedin
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const handleSignIn = (e) => {
     e.preventDefault();
