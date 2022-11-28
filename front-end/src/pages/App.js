@@ -11,7 +11,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 /*personal note: we need to pop in a condidition here...
 if logged in..redirect to / (home), else redirect back to login */
 
-// 2 routes; login and /
 const router = createBrowserRouter([
   {
     path: "/",
