@@ -5,9 +5,7 @@ import * as Yup from "yup";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import "./Users/Login.css";
 
-const LoginAuth = () => {
-  const [userId, setUserId] = useState("");
-  const [username, setUsername] = useState("");
+const LoginAuth = ({ handleLogin }) => {
   const [statusMessage, setStatusMessage] = useState("");
   const formSchema = Yup.object().shape({
     username: Yup.string().required("username is mandatory"),
@@ -19,9 +17,10 @@ const LoginAuth = () => {
 
   function onSubmit(input) {
     setStatusMessage("");
+    const username = input.username;
 
     try {
-      fetch(`http://localhost:3100/users?username=${input.username}`, {
+      fetch(`http://localhost:3100/users?username=${username}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -30,10 +29,20 @@ const LoginAuth = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data[0].password == input.password) {
-            setUserId(data[0]._id);
-            setUsername(data[0].username);
-            console.log(`rendering main page for ${username}`);
-            // ACTUALLY RENDER MAIN PAGE AND SHIT???
+            let code = {
+              authentication: Math.random().toString(16).substr(2, 10),
+            };
+            fetch(`http://localhost:3100/users?username=${username}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(code),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                handleLogin(username);
+              });
           } else {
             setStatusMessage("Username or Password was incorrect");
           }
@@ -68,7 +77,9 @@ const LoginAuth = () => {
           />
           <div className="invalid-feedback">{errors.password?.message}</div>
         </Form.Group>
-
+        <p>
+          <a href="./login/forgot">Forgot Your Password?</a>
+        </p>
         <Button className="headings-bold inputs" type="submit" variant="light">
           Login
         </Button>
@@ -76,7 +87,6 @@ const LoginAuth = () => {
           {" "}
           {statusMessage}
         </Alert>
-        {/* forgot password??? password recovery */}
       </Form>
     </Container>
   );

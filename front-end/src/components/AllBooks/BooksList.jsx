@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
-import { FaStar } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
 
 /* Component: displays all the books in the main page */
 
