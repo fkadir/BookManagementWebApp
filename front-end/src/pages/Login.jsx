@@ -1,17 +1,19 @@
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import Logo from "../components/Logo";
 import CreateUser from "../components/Users/CreateUser";
 import LoginAuth from "../components/LoginAuth";
-import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Footer from "../components/Footer.jsx";
+
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 function Login({ communicateLogin }) {
   // false = create account functionality, true = login functionality
-  const [state, setState] = useState(true);
+  let [state, setState] = useState(true);
 
-  //maybe unnecessary??
+  //maybe?
   // null =  not loggedin, username = loggedin
   // const [user, setUser] = useState(null);
 
@@ -25,13 +27,16 @@ function Login({ communicateLogin }) {
     setState(false);
   };
 
+  // if (user) {
+  //   return <Navigate to="/" replace />;
+  // } else
   if (state) {
     return (
       <div>
         <Logo />
         <LoginAuth
           handleLogin={(username) => {
-            // setUser(username);
+            setUser(username);
             communicateLogin(username);
           }}
         />

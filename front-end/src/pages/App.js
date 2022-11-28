@@ -9,19 +9,23 @@ import { useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
+// import Protected from "./Protected";
 
-/*personal note: we need to pop in a condidition here...
-if logged in..redirect to / (home), else redirect back to login */
+/*Page protection code adapted from https://www.makeuseof.com/create-protected-route-in-react/*/
 
 function App() {
   // null =  not loggedin, username = loggedin
-  const [user, setUser] = useState(null);
+  let [user, setUser] = useState(null);
 
   // 2 routes; login and /
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Container />,
+      element: (
+        // <Protected isLoggedIn={user}>
+        <Container />
+        // </Protected>
+      ),
       children: [
         {
           path: "",
@@ -43,8 +47,14 @@ function App() {
       children: [
         {
           path: "",
-          // loggedin username is communicated to app, now the condition part needs to be done
-          element: <Login communicateLogin={(username) => setUser(username)} />,
+          // loggedin username is communicated to app
+          element: (
+            <Login
+              communicateLogin={(username) => {
+                setUser(username);
+              }}
+            />
+          ),
         },
         {
           path: "forgot",
