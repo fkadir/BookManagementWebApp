@@ -2,8 +2,8 @@ function AccountManage() {
   return (
     <div>
       Account manage
-      <EditUser />
-      <DeleteUser />
+      {/* <EditUser /> */}
+      {/* <DeleteUser /> */}
     </div>
   );
 }
