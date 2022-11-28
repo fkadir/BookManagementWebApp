@@ -1,5 +1,6 @@
 .headings-bold {
   font-weight: 600;
+  margin: 2%;
 }
 
 .inputs {
@@ -21,4 +22,17 @@
 
 :-moz-placeholder {
   text-align: center;
+}
+
+.btnn {
+  margin: 1%;
+}
+
+.title {
+  font-weight: 800;
+  font-size: large;
+}
+
+.block {
+  margin: 3%;
 }

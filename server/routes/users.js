@@ -13,6 +13,7 @@ router.get("/", function (req, res, next) {
   //filter users by username or email
   if (req.query.username) searchQuery = { username: req.query.username };
   if (req.query.email) searchQuery = { email: req.query.email };
+  if (req.query.id) searchQuery = { _id: req.query.id };
 
   User.find(searchQuery, function (err, users) {
     if (err) {
