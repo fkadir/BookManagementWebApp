@@ -19,13 +19,16 @@ const ForgotPassword = () => {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setEmailSent(true);
-        });
+      }).then((response) =>
+        response.json().then((value) => {
+          setStatusMessage(value.msg);
+          if (value.msg == "") {
+            setEmailSent(true);
+          }
+        })
+      );
     } catch (error) {
-      setStatusMessage("No account exist with this email");
+      setStatusMessage("Email could not be send");
     }
   };
 

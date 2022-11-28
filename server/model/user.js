@@ -3,10 +3,25 @@ var Schema = mongoose.Schema;
 
 // Define a schema.
 var userSchema = new Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  email: { type: String, required: true },
-  authentication: { type: String, default: "", required: false },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  authentication: {
+    type: String,
+    default: "",
+    required: false,
+  },
 });
 
 // Create a model.

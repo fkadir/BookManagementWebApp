@@ -12,31 +12,32 @@ var router = express.Router();
 
 router.post("/forgot", (req, res, next) => {
   try {
-    userEmail = req.query.email;
-    searchQuery = { email: userEmail };
+    searchQuery = { email: req.query.email };
 
     User.find(searchQuery, function (err, userResult) {
       if (err) {
         res.status(400);
         res.send();
       }
-      let newResetRequest = new resetRequest({ email: userEmail });
-      newResetRequest._id = mongoose.Types.ObjectId();
+      if (userResult.length > 0) {
+        let newResetRequest = new resetRequest(searchQuery);
+        newResetRequest._id = mongoose.Types.ObjectId();
 
-      newResetRequest.save(function (err) {
-        if (err) {
-          console.log("reset request not created!");
-          res.status(400);
-          res.send();
-        } else {
-          console.log("reset request created!");
-          res.send({ id: newResetRequest._id });
-        }
-      });
-      // sendResetLink(userEmail, newResetRequest._id);
+        newResetRequest.save(function (err) {
+          if (err) {
+            res.status(400);
+            res.send({ msg: "Link could not be send " });
+          } else {
+            console.log("reset request created!");
+            // sendResetLink(req.query.email, newResetRequest._id);
+            res.status(200);
+            res.send({ msg: "" });
+          }
+        });
+      } else {
+        res.send({ msg: "No account exists with this email" });
+      }
     });
-
-    res.status(200);
   } catch (error) {
     res.status(500);
   }
