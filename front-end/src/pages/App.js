@@ -8,7 +8,7 @@ import AccountManage from "./AccountManage";
 import { useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
-import ResetPassword from "./ResetPassword";
+// import ResetPassword from "./ResetPassword";
 
 /*personal note: we need to pop in a condidition here...
 if logged in..redirect to / (home), else redirect back to login */
@@ -51,8 +51,8 @@ function App() {
           element: <ForgotPassword />,
         },
         {
-          path: "reset",
-          element: <ResetPassword />,
+          // path: "reset",
+          // element: <ResetPassword />,
         },
       ],
     },
