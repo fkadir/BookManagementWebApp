@@ -8,7 +8,7 @@ var sendResetLink = require("./sendEmail");
 
 var router = express.Router();
 
-// code adapted from: https://github.com/coding-with-chaim/forgot-password-code/tree/master/auth
+// code adapted from: https://github.com/coding-with-chaim/forgot-password-code/tree/master/auth/index.js
 
 router.post("/forgot", (req, res, next) => {
   try {

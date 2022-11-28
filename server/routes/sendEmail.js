@@ -1,7 +1,7 @@
 var nodemailer = require("nodemailer");
 const SMTPTransport = require("nodemailer/lib/smtp-transport");
 
-//code adapted from: w3schools.com/nodejs/nodejs_email.asp
+//code adapted from: w3schools.com/nodejs/nodejs_email.asp and https://github.com/coding-with-chaim/forgot-password-code/blob/master/auth/sendEmail.js
 
 //doesnt work yet following error: Error: connect ETIMEDOUT 74.125.193.108:465, problem for later
 //change to outlook?

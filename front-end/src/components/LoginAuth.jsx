@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import "./Users/Login.css";
 
+//code adapted from: https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
+
 const LoginAuth = ({ handleLogin }) => {
   const [statusMessage, setStatusMessage] = useState("");
   const formSchema = Yup.object().shape({

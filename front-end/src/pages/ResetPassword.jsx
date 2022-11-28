@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useParams } from "react-router-dom";
 
-// code adapted from: https://github.com/coding-with-chaim/forgot-password-code/blob/master/client/src/routes/ResetPassword/index.js
+// code adapted from: https://github.com/coding-with-chaim/forgot-password-code/blob/master/client/src/routes/ResetPassword/index.js and https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
 
 //unadapted youtube: 6:25
 
