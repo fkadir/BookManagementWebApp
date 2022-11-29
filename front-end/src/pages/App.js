@@ -5,7 +5,6 @@ import Home from "./Home";
 import Container from "./Container";
 import MyBooks from "./MyBooks";
 import AccountManage from "./AccountManage";
-import { useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
@@ -14,15 +13,12 @@ import ResetPassword from "./ResetPassword";
 /*Page protection code adapted from https://www.makeuseof.com/create-protected-route-in-react/*/
 
 function App() {
-  // null =  not loggedin, username = loggedin
-  let [user, setUser] = useState(null);
-
   // 2 routes; login and /
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        // <Protected isLoggedIn={user}>
+        //  <Protected>
         <Container />
         // </Protected>
       ),
@@ -47,14 +43,7 @@ function App() {
       children: [
         {
           path: "",
-          // loggedin username is communicated to app
-          element: (
-            <Login
-              communicateLogin={(username) => {
-                setUser(username);
-              }}
-            />
-          ),
+          element: <Login />,
         },
         {
           path: "forgot",

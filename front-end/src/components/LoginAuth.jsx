@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Navigate, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import "./Users/Login.css";
 
-//code adapted from: https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
+//code adapted from: https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/ and
 
-const LoginAuth = ({ handleLogin }) => {
+const LoginAuth = () => {
   const [statusMessage, setStatusMessage] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
   const formSchema = Yup.object().shape({
     username: Yup.string().required("username is mandatory"),
     password: Yup.string().required("password is mandatory"),
@@ -19,41 +21,56 @@ const LoginAuth = ({ handleLogin }) => {
 
   function onSubmit(input) {
     setStatusMessage("");
-    const username = input.username;
+    const body = {
+      username: input.username,
+      password: input.password,
+    };
 
+    //code adapted from: https://dev.to/salarc123/mern-stack-authentication-tutorial-part-2-the-frontend-gen
     try {
-      fetch(`http://localhost:3100/users?username=${username}`, {
-        method: "GET",
+      fetch(`http://localhost:3100/users/login`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(body),
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data[0].password == input.password) {
-            let code = {
-              authentication: Math.random().toString(16).substr(2, 10),
-            };
-            fetch(`http://localhost:3100/users?username=${username}`, {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(code),
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                handleLogin(username);
-              });
-          } else {
-            setStatusMessage("Username or Password was incorrect");
-          }
+          localStorage.setItem("token", data.token);
         });
     } catch (err) {
       // Remediation logic
       setStatusMessage("There was an error logging in");
     }
   }
+
+  const userAuth = () => {
+    try {
+      fetch(`http://localhost:3100/users/isUserAuth`, {
+        method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.isLoggedIn);
+          data.isLoggedIn ? setIsLogin(true) : setIsLogin(false);
+        });
+    } catch (error) {
+      setStatusMessage("Could not authenticate user");
+    }
+  };
+
+  useEffect(() => {
+    userAuth();
+  });
+
+  // handle redirect
+  // if (isLogin) {
+  //   return <Redirect to="/" replace />;
+  // }
 
   return (
     <Container fluid>

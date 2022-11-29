@@ -17,11 +17,6 @@ var userSchema = new Schema({
     required: true,
     unique: true,
   },
-  authentication: {
-    type: String,
-    default: "",
-    required: false,
-  },
 });
 
 // Create a model.

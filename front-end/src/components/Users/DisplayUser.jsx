@@ -4,9 +4,8 @@ import "./Login.css";
 
 const DisplayUser = (props) => {
   const [statusMessage, setStatusMessage] = useState("");
-  var [username, setUsername] = useState(null);
-  var [email, setEmail] = useState(null);
-  var [pw, setPw] = useState(null);
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState(null);
 
   useEffect(() => {
     handleDisplayUser();
@@ -14,7 +13,7 @@ const DisplayUser = (props) => {
 
   const handleDisplayUser = () => {
     try {
-      fetch(`http://localhost:3100/users?id=${props.id}`, {
+      fetch(`http://localhost:3100/users?username=${props.username}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -22,9 +21,8 @@ const DisplayUser = (props) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setUsername(data[0].username);
+          setUser(data[0].username);
           setEmail(data[0].email);
-          setPw(data[0].password);
         });
     } catch (error) {
       setStatusMessage("Unable to display your account at this time");
@@ -39,11 +37,9 @@ const DisplayUser = (props) => {
         </thead>
         <tbody>
           <tr className="headings-bold">Username</tr>
-          <tr>{username}</tr>
+          <tr>{user}</tr>
           <tr className="headings-bold">Email</tr>
           <tr>{email}</tr>
-          <tr className="headings-bold">Password</tr>
-          <tr>{pw}</tr>
         </tbody>
       </Table>
       <Alert variant={statusMessage != "" ? "danger" : null}>

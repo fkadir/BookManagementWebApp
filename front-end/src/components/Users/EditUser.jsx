@@ -10,7 +10,6 @@ const EditUser = (props) => {
 
   //adapt to pw not being required??
   const formSchema = Yup.object().shape({
-    password: Yup.string().min(6, "Password must be 6 char long"),
     pwCheck: Yup.string().oneOf(
       [Yup.ref("password")],
       "Password does not match"

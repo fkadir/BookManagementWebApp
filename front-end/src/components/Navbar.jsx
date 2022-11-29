@@ -3,6 +3,11 @@ import logo from "../images/logo-nobg.png";
 
 // https://react-bootstrap.github.io/components/offcanvas/  = made changes to suit our app
 function NavbarComp() {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    //redirect?
+  };
+
   return (
     <>
       {[false].map((expand) => (
@@ -40,7 +45,9 @@ function NavbarComp() {
                   <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/my-books">My Books</Nav.Link>
                   <Nav.Link href="/account-manage">Account</Nav.Link>
-                  <Button variant="outline-success">Logout</Button>
+                  <Button variant="outline-success" onClick={handleLogout}>
+                    Logout
+                  </Button>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
