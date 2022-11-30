@@ -16,15 +16,23 @@ router.get("/:page", function (req, res, next) {
           bookId: item.id,
           bookTitle: item.volumeInfo.title,
           bookSubtitle: item.volumeInfo.subtitle,
-          bookAuthors: item.volumeInfo.authors,
-          bookPublisher: item.volumeInfo.publisher,
-          bookPublisherDate: item.volumeInfo.publisherDate,
+          bookAuthors: item.volumeInfo.authors
+            ? `by ${item.volumeInfo.authors}`
+            : "No authors available",
+          bookPublisher: item.volumeInfo.publisher
+            ? `Published by: ${item.volumeInfo.publisher}`
+            : "No publisher available",
+          bookPublisherDate: item.volumeInfo.publisherDate
+            ? `Published on: ${item.volumeInfo.publisherDate}`
+            : " ",
           bookDescription: item.volumeInfo.description,
           // bookIsbnIdentifier: item.volumeInfo.industryIdentifiers[1].identifier,
-          bookGenre: item.volumeInfo.categories,
-          bookAvgRating: item.volumeInfo.averageRating,
-          // ? item.volumeInfo.averageRating
-          // : "Rating not available at this time",
+          bookGenre: item.volumeInfo.categories
+            ? `Genre: ${item.volumeInfo.categories}`
+            : " ",
+          bookAvgRating: item.volumeInfo.averageRating //conditional: if this has rating; store in bookAvgRating, else display string
+            ? item.volumeInfo.averageRating
+            : "Rating not available at this time",
 
           // check if thumbnail is null
           bookcover: item.volumeInfo.imageLinks.thumbnail

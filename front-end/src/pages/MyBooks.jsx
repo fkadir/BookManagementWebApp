@@ -1,5 +1,14 @@
+import MyBooksList from "../components/MyBooks/MyBooksList";
+
 function MyBooks() {
-  return <div>My Books</div>;
+  return (
+    <div>
+      {/* add <MyBooksNav/> here */}
+      {/* add <CrSideBar/> here */}
+      {/* add <SearchMyBooks/> here */}
+      <MyBooksList />
+    </div>
+  );
 }
 
 export default MyBooks;
