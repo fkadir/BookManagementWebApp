@@ -8,7 +8,6 @@ import "./Login.css";
 const EditUser = (props) => {
   const [statusMessage, setStatusMessage] = useState("");
 
-  //adapt to pw not being required??
   const formSchema = Yup.object().shape({
     pwCheck: Yup.string().oneOf(
       [Yup.ref("password")],
@@ -19,61 +18,43 @@ const EditUser = (props) => {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  //adapt to edit user!!
+  //handle form input
   function onSubmit(input) {
-    console.log(input);
-    setStatusMessage("");
-    // try {
-    //   fetch(`http://localhost:3100/users?username=${input.username}`, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //       // ensure username is unique
-    //       if (data[0].username) {
-    //         setStatusMessage("Username already in use ");
-    //       } else {
-    //         let user = {
-    //           username: input.username,
-    //           password: input.password,
-    //           email: input.email,
-    //         };
-    //         // handleEditUser(user);
-    //       }
-    //     });
-    // } catch (err) {
-    //   setStatusMessage("There was an error creating your account");
-    // }
+    delete input.pwCheck;
+    if (!input.email) {
+      delete input.email;
+    }
+    if (!input.username) {
+      delete input.username;
+    }
+    if (!input.password) {
+      delete input.password;
+    }
+
+    try {
+      fetch(`http://localhost:3100/users?username=${props.username}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(input),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setStatusMessage("Changes have been saved!");
+        });
+    } catch (err) {
+      setStatusMessage("There was an error creating your account");
+    }
   }
 
-  // adapt to edit!!
-  //   function handleEditUser(user) {
-  //     try {
-  //       fetch("http://localhost:3100/users", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(user),
-  //       }).then((response) => response.json());
-  //     } catch (err) {
-  //       // Remediation logic
-  //       setStatusMessage("There was an error chanign details");
-  //     }
-  //   }
-
-  //why does this function work???
   function handleExit() {
     console.log("EXIT");
   }
 
   return (
     <Container fluid>
-      <div> Edit Account</div>
+      <p className="title"> Edit Account</p>
       <Form>
         <Form.Group className="inputs">
           <Form.Label className="headings-bold">Email address</Form.Label>

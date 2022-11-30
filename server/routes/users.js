@@ -62,16 +62,35 @@ router.post("/login", login);
 router.patch("/", function (req, res, next) {
   let searchQuery = {};
 
-  if (req.query.id) searchQuery = { _id: req.query.id };
   if (req.query.username) searchQuery = { username: req.query.username };
 
-  User.updateOne(searchQuery, { $set: req.body }, function (err, updated) {
-    if (err) {
-      res.status(400);
-      res.send();
-    }
-    res.send(updated);
-  });
+  if (req.body.password) {
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(req.body.password, salt, function (err, hash) {
+        if (err) throw err;
+        req.body.password = hash;
+        User.updateOne(
+          searchQuery,
+          { $set: req.body },
+          function (err, updated) {
+            if (err) {
+              res.status(400);
+              res.send();
+            }
+            res.send(updated);
+          }
+        );
+      });
+    });
+  } else {
+    User.updateOne(searchQuery, { $set: req.body }, function (err, updated) {
+      if (err) {
+        res.status(400);
+        res.send();
+      }
+      res.send(updated);
+    });
+  }
 });
 
 /* delete user*/

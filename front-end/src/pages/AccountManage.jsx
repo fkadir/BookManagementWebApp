@@ -7,7 +7,7 @@ import "./Login.css";
 
 function AccountManage() {
   const [edit, setEdit] = useState(false);
-  const [username, setUsername] = useState("charlotte");
+  const [username, setUsername] = useState("fkadir");
 
   const getUser = () => {
     try {
