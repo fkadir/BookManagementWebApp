@@ -37,8 +37,10 @@ const LoginAuth = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setStatusMessage(data.msg);
           localStorage.setItem("token", data.token);
+          setIsLogin(data.success);
         });
     } catch (err) {
       // Remediation logic
@@ -46,67 +48,74 @@ const LoginAuth = () => {
     }
   }
 
-  const userAuth = () => {
-    try {
-      fetch(`http://localhost:3100/users/isUserAuth`, {
-        method: "GET",
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // redirect or redirect to fk main page pls
-        });
-    } catch (error) {
-      setStatusMessage("Could not authenticate user");
-    }
-  };
+  // const userAuth = () => {
+  //   try {
+  //     fetch(`http://localhost:3100/users/isUserAuth`, {
+  //       method: "GET",
+  //       headers: {
+  //         "x-access-token": localStorage.getItem("token"),
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         // redirect or navigate to fk main page pls
+  //       });
+  //   } catch (error) {
+  //     setStatusMessage("Could not authenticate user");
+  //   }
+  // };
 
-  useEffect(() => {
-    userAuth();
-  });
+  // useEffect(() => {
+  //   userAuth();
+  // });
 
-  // handle redirect/navigate
-  // if (isLogin) {
-  // }
-  return (
-    <Container fluid>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="inputs">
-          <Form.Label className="headings-bold">Username</Form.Label>
-          <Form.Control
-            type="text"
-            name="username"
-            {...register("username")}
-            className={`form-control ${errors.username ? "is-invalid" : ""}`}
-          />
-          <div className="invalid-feedback">{errors.username?.message}</div>
-        </Form.Group>
+  //handle redirect/navigate
+  if (isLogin) {
+    return <Navigate to="/" replace />;
+  } else {
+    return (
+      <Container fluid>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form.Group className="inputs">
+            <Form.Label className="headings-bold">Username</Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              {...register("username")}
+              className={`form-control ${errors.username ? "is-invalid" : ""}`}
+            />
+            <div className="invalid-feedback">{errors.username?.message}</div>
+          </Form.Group>
 
-        <Form.Group className="inputs">
-          <Form.Label className="headings-bold">Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            {...register("password")}
-            className={`form-control ${errors.password ? "is-invalid" : ""}`}
-          />
-          <div className="invalid-feedback">{errors.password?.message}</div>
-        </Form.Group>
-        <p>
-          <a href="./login/forgot">Forgot Your Password?</a>
-        </p>
-        <Button className="headings-bold inputs" type="submit" variant="light">
-          Login
-        </Button>
-        <Alert variant={statusMessage ? "danger" : null}>
-          {" "}
-          {statusMessage}
-        </Alert>
-      </Form>
-    </Container>
-  );
+          <Form.Group className="inputs">
+            <Form.Label className="headings-bold">Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              {...register("password")}
+              className={`form-control ${errors.password ? "is-invalid" : ""}`}
+            />
+            <div className="invalid-feedback">{errors.password?.message}</div>
+          </Form.Group>
+          <p>
+            <a href="./login/forgot">Forgot Your Password?</a>
+          </p>
+          <Button
+            className="headings-bold inputs"
+            type="submit"
+            variant="light"
+          >
+            Login
+          </Button>
+          <Alert variant={statusMessage ? "danger" : null}>
+            {" "}
+            {statusMessage}
+          </Alert>
+        </Form>
+      </Container>
+    );
+  }
 };
 
 export default LoginAuth;

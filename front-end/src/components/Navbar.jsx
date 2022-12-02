@@ -1,12 +1,11 @@
 import { Navbar, Nav, Container, Button, Offcanvas } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import logo from "../images/logo-nobg.png";
 
 // https://react-bootstrap.github.io/components/offcanvas/  = made changes to suit our app
 function NavbarComp() {
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    //redirect?
-  };
+  const navigate = useNavigate();
+  const handleLogout = () => {};
 
   return (
     <>
@@ -45,7 +44,14 @@ function NavbarComp() {
                   <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/my-books">My Books</Nav.Link>
                   <Nav.Link href="/account-manage">Account</Nav.Link>
-                  <Button variant="outline-success" onClick={handleLogout}>
+                  <Button
+                    variant="outline-success"
+                    onClick={() => {
+                      localStorage.removeItem("token");
+                      console.log(localStorage.getItem("token"));
+                      navigate("/login");
+                    }}
+                  >
                     Logout
                   </Button>
                 </Nav>

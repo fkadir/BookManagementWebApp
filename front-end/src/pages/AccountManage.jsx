@@ -7,7 +7,8 @@ import "./Login.css";
 
 function AccountManage() {
   const [edit, setEdit] = useState(false);
-  const [username, setUsername] = useState("fkadir");
+  const [username, setUsername] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const getUser = () => {
     try {
@@ -23,12 +24,12 @@ function AccountManage() {
           setUsername(data.username);
         });
     } catch (error) {
-      // do something
+      setStatusMessage("Your account details cannot be shown at this time");
     }
   };
 
   useEffect(() => {
-    // getUser();
+    getUser();
   });
 
   const handleEdit = () => {
@@ -40,8 +41,11 @@ function AccountManage() {
     comp = (
       <Container fluid>
         <EditUser username={username} />
-        {/* username={username} */}
         <DeleteUser username={username} />
+        <Alert variant={statusMessage ? "danger" : null}>
+          {" "}
+          {statusMessage}
+        </Alert>
       </Container>
     );
   } else {
@@ -51,6 +55,10 @@ function AccountManage() {
         <Button className="btnn" onClick={handleEdit} variant="outline-success">
           Edit Account
         </Button>
+        <Alert variant={statusMessage ? "danger" : null}>
+          {" "}
+          {statusMessage}
+        </Alert>
       </Container>
     );
   }
