@@ -37,7 +37,7 @@ const CreateUser = () => {
         .then((data) => {
           console.log(data);
           // ensure username is unique
-          if (data[0].username) {
+          if (data.length != 0) {
             setStatusMessage("Username already in use ");
           } else {
             let user = {
@@ -61,7 +61,9 @@ const CreateUser = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      }).then((response) => response.json());
+      })
+        .then((response) => response.json())
+        .then((data) => setStatusMessage(data.msg));
     } catch (err) {
       // Remediation logic
       setStatusMessage("There was an error creating the user");

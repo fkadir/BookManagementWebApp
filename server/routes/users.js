@@ -43,12 +43,13 @@ router.post("/", function (req, res, next) {
       newUser.password = hash;
       newUser.save(function (err) {
         if (err) {
-          console.log("not saved!");
-          res.status(400);
-          res.send();
+          console.log(err);
+          res.status(400).json({
+            msg: "Account could not be created. Email might already be in use",
+          });
         } else {
           console.log("saved!");
-          res.send({ id: newUser._id });
+          res.send({ id: newUser._id, msg: "" });
         }
       });
     });
