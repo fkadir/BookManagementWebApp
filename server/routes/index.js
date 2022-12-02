@@ -2,7 +2,7 @@ var express = require("express");
 
 var router = express.Router();
 
-/* GET home page. */
+/* GET ex api */
 router.get("/:page", function (req, res, next) {
   fetch(
     `https://www.googleapis.com/books/v1/volumes?q=search+terms&key=AIzaSyALGNX80FxfZ9U-oFQPyh0k8T1IgquZc1w&page=${req.params.page}`
