@@ -13,7 +13,21 @@ const BooksList = () => {
   const [search, setSearch] = useState("");
   // const [bookData, setBookData] = useState([]);
 
-  /* fetch all books data */
+  // /*search book */
+  // const searchBook = (evt) => {
+  //   if (evt.key === "Enter") {
+  //     fetch(`http://localhost:9000/books/`)
+  //       .then(
+  //         //fetching data from api port 9000
+  //         (response) => (response.json()) //getting the response from the api in json. i.e changing to array
+  //       )
+  //       .then((data) => {
+  //         setBackendData(data); //setting backend data to data variable once gotten json
+  //       });
+  //   }
+  // };
+
+  /* fetch books data */
   const fetchData = (currentPage) => {
     fetch(`http://localhost:9000/books/${currentPage}`)
       .then(
@@ -36,18 +50,6 @@ const BooksList = () => {
     setCurrentPage(currentPage + 1); //increments page
   };
 
-  /* handle book search */
-  const handleSearch = () => {
-    fetch(`http://localhost:9000/books/search/${search}`)
-      .then(
-        //fetching data from api port 9000
-        (response) => response.json() //getting the response from the api in json. i.e changing to array
-      )
-      .then((data) => {
-        setBackendData(data); //setting backend data to data variable once gotten json
-      });
-  };
-
   /* display to user */
   return (
     <div>
@@ -59,13 +61,14 @@ const BooksList = () => {
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          // onKeyPress={searchBook}
           placeholder="Search for book"
           className="me-2"
           aria-label="Search"
         />
-        <Button variant="outline-success" onClick={handleSearch}>
+        {/* <Button variant="outline-success" onClick={handleSearch}>
           Search
-        </Button>
+        </Button> */}
       </Form>
 
       {/* testing book cards */}
