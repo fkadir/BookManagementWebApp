@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -37,6 +37,7 @@ const LoginAuth = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          setStatusMessage(data.msg);
           localStorage.setItem("token", data.token);
         });
     } catch (err) {
@@ -55,8 +56,7 @@ const LoginAuth = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.isLoggedIn);
-          data.isLoggedIn ? setIsLogin(true) : setIsLogin(false);
+          // redirect or redirect to fk main page pls
         });
     } catch (error) {
       setStatusMessage("Could not authenticate user");
@@ -67,11 +67,9 @@ const LoginAuth = () => {
     userAuth();
   });
 
-  // handle redirect
+  // handle redirect/navigate
   // if (isLogin) {
-  //   return <Redirect to="/" replace />;
   // }
-
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit(onSubmit)}>
