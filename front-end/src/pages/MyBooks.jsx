@@ -26,7 +26,7 @@ const MyBooks = () => {
         .then((data) => {
           //not sure how you want to format the data, so this is a start
           console.log(data);
-          // setMyBooksData(data); //setting backend data to data variable once gotten json
+          setMyBooksData(data); //setting backend data to data variable once gotten json
         });
     });
   };
@@ -55,7 +55,7 @@ const MyBooks = () => {
       {/* testing book cards */}
       <div className="book-card-container">
         {<BookCard allBooks={myBooksData} />}
-        BookCard
+        {/* BookCard */}
       </div>
 
       {/* personal note: these should go into MyBookCard????? */}
