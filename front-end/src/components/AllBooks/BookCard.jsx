@@ -22,7 +22,6 @@ const BookCard = ({ allBooks }) => {
               }}
               key={index}
             >
-              <h1> card title </h1>
               <img src={book.bookcover} alt="book cover" />
               <div className="card-info">
                 <h3 className="book-title">{book.bookTitle}</h3>

@@ -8,10 +8,8 @@ import BookCard from "./BookCard";
 
 const BooksList = () => {
   const [backendData, setBackendData] = useState([]);
-  // const [searchBooksResults, setSearchBooksResults] = useState([]);
   // const [errorMessage, setErrorMessage] = useState("");
   const [search, setSearch] = useState("");
-  // const [bookData, setBookData] = useState([]);
 
   /* fetch all books data */
   const fetchData = (currentPage) => {
@@ -34,6 +32,10 @@ const BooksList = () => {
 
   const handleMoreClick = () => {
     setCurrentPage(currentPage + 1); //increments page
+    const ScrollTop = () => {
+      //scroll to the top of the page
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
   };
 
   /* handle book search */
@@ -48,6 +50,11 @@ const BooksList = () => {
       });
   };
 
+  // const ScrollTop = () => {
+  //   //scroll to the top of the page
+  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  // };
+
   /* display to user */
   return (
     <div>
@@ -59,7 +66,7 @@ const BooksList = () => {
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search for book"
+          placeholder="Search for book title"
           className="me-2"
           aria-label="Search"
         />
@@ -68,7 +75,7 @@ const BooksList = () => {
         </Button>
       </Form>
 
-      {/* testing book cards */}
+      {/* show cards */}
       <div className="book-card-container">
         {<BookCard allBooks={backendData} />}
       </div>

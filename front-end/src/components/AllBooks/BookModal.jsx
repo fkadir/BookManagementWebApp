@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
-/* modal of full book details (i.e a pop up of full books details when you click the BookCard) */
+/* modal of full book details (i.e a pop up of books details when you click the BookCard) */
 const BookModal = ({ modalShow, bookItem, onHide }) => {
   return (
     <Modal
@@ -31,5 +31,3 @@ const BookModal = ({ modalShow, bookItem, onHide }) => {
 };
 
 export default BookModal;
-
-//{bookItem.bookAuthors ? `by ${bookItem.bookAuthors}` : "No authors"}
