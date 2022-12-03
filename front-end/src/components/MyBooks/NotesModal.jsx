@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Form, Modal, Button, InputGroup } from "react-bootstrap";
 
 /* modal of full book details (i.e a pop up of books details when you click the BookCard) */
 const NotesModal = ({ modalShow, bookItem, onHide }) => {
@@ -15,7 +15,14 @@ const NotesModal = ({ modalShow, bookItem, onHide }) => {
       </Modal.Header>
       <Modal.Body>
         <p> TEST </p>
+        <Form>
+          <InputGroup>
+            <Form.Control as="textarea" aria-label="With textarea" />
+          </InputGroup>
+        </Form>
       </Modal.Body>
+      <Button variant="outline-danger">Cancel</Button>
+      <Button variant="outline-success">Save</Button>
     </Modal>
   );
 };
