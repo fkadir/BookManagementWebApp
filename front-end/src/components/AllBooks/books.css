@@ -8,5 +8,16 @@
 }
 
 .book-card {
-  padding: 1rem;
+  padding: 0;
+  margin: 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+.book-card-container {
+  border: 2px;
+}
+
+.bookcover {
+  float: left;
 }

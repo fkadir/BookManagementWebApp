@@ -30,11 +30,7 @@ const DeleteUser = (props) => {
   } else {
     return (
       <div>
-        <Button
-          className="btnn"
-          variant="outline-danger"
-          onClick={handleDelete}
-        >
+        <Button variant="outline-danger" onClick={handleDelete}>
           Delete Account
         </Button>
         <Alert variant={statusMessage != "" ? "danger" : null}>

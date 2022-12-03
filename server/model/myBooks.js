@@ -10,6 +10,12 @@ var myBooksSchema = new Schema({
   status: String,
   rating: Number,
   notes: String,
+  cover: {
+    data: Buffer,
+    contentType: String,
+  },
+  subtitle: String,
+  description: String,
 });
 
 // Create a model.

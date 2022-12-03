@@ -3,7 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 function ReadingStatusDropdown() {
   return (
     <Dropdown className="d-inline mx-2">
-      <Dropdown.Toggle id="dropdown-autoclose-true">
+      <Dropdown.Toggle variant="light" id="dropdown-autoclose-true">
         Reading Status
       </Dropdown.Toggle>
 

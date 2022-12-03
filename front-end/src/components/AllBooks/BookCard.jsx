@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import BookModal from "./BookModal";
 import NotesModal from "../MyBooks/NotesModal";
+import "./books.css";
 
 /* card with book preview and invokes a modal with full book details */
 const BookCard = ({ allBooks }) => {
@@ -24,7 +25,11 @@ const BookCard = ({ allBooks }) => {
               }}
               key={index}
             >
-              <img src={book.bookcover} alt="book cover" />
+              <img
+                className="bookcover"
+                src={book.bookcover}
+                alt="book cover"
+              />
               <div className="card-info">
                 <h3 className="book-title">{book.bookTitle}</h3>
                 <p className="authors">{book.bookAuthors}</p>
