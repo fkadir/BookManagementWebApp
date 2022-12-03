@@ -20,7 +20,7 @@ const NotesModal = ({ modalShow, bookItem, onHide }) => {
           </InputGroup>
         </Form>
       </Modal.Body>
-      <Button variant="outline-success">Save</Button>
+      <Button className="btnn">Save</Button>
     </Modal>
   );
 };

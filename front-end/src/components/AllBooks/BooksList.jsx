@@ -70,7 +70,7 @@ const BooksList = () => {
           className="me-2"
           aria-label="Search"
         />
-        <Button variant="outline-success" onClick={handleSearch}>
+        <Button className="btnn" onClick={handleSearch}>
           Search
         </Button>
       </Form>
@@ -81,7 +81,9 @@ const BooksList = () => {
       </div>
 
       <div>
-        <Button onClick={handleMoreClick}>More...</Button>
+        <Button className="btnn" onClick={handleMoreClick}>
+          More...
+        </Button>
       </div>
     </div>
   );

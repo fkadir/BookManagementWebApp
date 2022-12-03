@@ -8,6 +8,7 @@ const DisplayUser = (props) => {
   const [email, setEmail] = useState(null);
 
   useEffect(() => {
+    setStatusMessage("");
     handleDisplayUser();
   });
 
@@ -21,8 +22,12 @@ const DisplayUser = (props) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setUser(data[0].username);
-          setEmail(data[0].email);
+          if (data.length === 1) {
+            setUser(data[0].username);
+            setEmail(data[0].email);
+          } else {
+            setStatusMessage("Error has occured");
+          }
         });
     } catch (error) {
       setStatusMessage("Unable to display your account at this time");
@@ -32,8 +37,8 @@ const DisplayUser = (props) => {
   return (
     <div>
       <Table className="text-center">
-        <thead className="title">
-          <tr>Account Details </tr>
+        <thead>
+          <h3>Account Details </h3>
         </thead>
         <tbody>
           <tr className="headings-bold">Username</tr>

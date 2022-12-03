@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <Card bg="grey">
       <Card.Body>
-        <Button variant="secondary" size="lg" onClick={ScrollTop}>
+        <Button className="btnn" size="lg" onClick={ScrollTop}>
           Back to the top
         </Button>
         <div>

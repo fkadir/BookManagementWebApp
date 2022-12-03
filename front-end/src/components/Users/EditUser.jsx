@@ -7,6 +7,7 @@ import "./Login.css";
 
 const EditUser = (props) => {
   const [statusMessage, setStatusMessage] = useState("");
+  const [confirmation, setConfirmation] = useState("");
 
   const formSchema = Yup.object().shape({
     pwCheck: Yup.string().oneOf(
@@ -41,7 +42,7 @@ const EditUser = (props) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setStatusMessage("Changes have been saved!");
+          setConfirmation("Changes have been saved!");
         });
     } catch (err) {
       setStatusMessage("There was an error creating your account");
@@ -54,7 +55,7 @@ const EditUser = (props) => {
 
   return (
     <Container fluid>
-      <p className="title"> Edit Account</p>
+      <h3> Edit Account</h3>
       <Form>
         <Form.Group className="inputs">
           <Form.Label className="headings-bold">Email address</Form.Label>
@@ -94,15 +95,14 @@ const EditUser = (props) => {
         </Form.Group>
 
         <Button
-          className="headings-bold inputs"
+          className="headings-bold inputs btnn"
           type="submit"
-          variant="outline-danger"
           onClick={handleExit}
         >
           Exit
         </Button>
         <Button
-          className="headings-bold inputs"
+          className="headings-bold inputs btnn"
           type="submit"
           variant="outline-success"
           onClick={handleSubmit(onSubmit)}
@@ -112,6 +112,10 @@ const EditUser = (props) => {
         <Alert variant={statusMessage != "" ? "danger" : null}>
           {" "}
           {statusMessage}
+        </Alert>
+        <Alert variant={confirmation != "" ? "success" : null}>
+          {" "}
+          {confirmation}
         </Alert>
       </Form>
     </Container>

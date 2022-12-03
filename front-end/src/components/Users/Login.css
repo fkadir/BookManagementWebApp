@@ -26,13 +26,27 @@
 
 .btnn {
   margin: 1%;
+  border: none;
+  background-color: #050a30;
+  text-decoration-color: white;
 }
 
-.title {
-  font-weight: 800;
-  font-size: large;
+.btnn:hover {
+  background-color: #cae8ff;
+}
+
+.btnn::after {
+  background-color: #cae8ff;
 }
 
 .block {
   margin: 3%;
+}
+
+.nav {
+  background-color: #e6e3df;
+}
+
+.nav .pad-0 {
+  padding: 0;
 }

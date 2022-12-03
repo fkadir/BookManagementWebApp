@@ -10,15 +10,9 @@ function NavbarComp() {
   return (
     <>
       {[false].map((expand) => (
-        <Navbar
-          key={expand}
-          bg="light"
-          expand={expand}
-          sticky="top"
-          className="mb-3"
-        >
+        <Navbar key={expand} expand={expand} sticky="top" className="nav mb-3">
           <Container className="navbar-links" fluid>
-            <Navbar.Brand href="/" className="d-flex align-items-center">
+            <Navbar.Brand href="/" className="d-flex align-items-center pad-0">
               <img
                 width="100"
                 height="100"
@@ -45,7 +39,7 @@ function NavbarComp() {
                   <Nav.Link href="/my-books">My Books</Nav.Link>
                   <Nav.Link href="/account-manage">Account</Nav.Link>
                   <Button
-                    variant="outline-success"
+                    className="btnn"
                     onClick={() => {
                       localStorage.removeItem("token");
                       console.log(localStorage.getItem("token"));

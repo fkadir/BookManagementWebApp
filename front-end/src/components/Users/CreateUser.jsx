@@ -122,8 +122,7 @@ const CreateUser = () => {
           <div className="invalid-feedback">{errors.pwCheck?.message}</div>
         </Form.Group>
 
-        <Button className="headings-bold inputs" type="submit" variant="light">
-          {" "}
+        <Button className="headings-bold inputs btnn" type="submit">
           create account
         </Button>
         <Alert variant={statusMessage != "" ? "danger" : null}>

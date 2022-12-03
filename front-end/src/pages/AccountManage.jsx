@@ -52,7 +52,7 @@ function AccountManage() {
     comp = (
       <Container fluid>
         <DisplayUser username={username} />
-        <Button className="btnn" onClick={handleEdit} variant="outline-success">
+        <Button className="btnn" onClick={handleEdit}>
           Edit Account
         </Button>
         <Alert variant={statusMessage ? "danger" : null}>

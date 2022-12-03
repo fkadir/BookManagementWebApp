@@ -29,7 +29,7 @@ const SearchAllBooks = () => {
         className="me-2"
         aria-label="Search"
       />
-      <Button variant="outline-success" onClick={<handSearch />}>
+      <Button className="btnn" onClick={<handSearch />}>
         Search
       </Button>
     </Form>

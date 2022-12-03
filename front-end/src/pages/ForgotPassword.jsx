@@ -58,11 +58,7 @@ const ForgotPassword = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-          <Button
-            className="headings-bold inputs"
-            type="submit"
-            variant="light"
-          >
+          <Button className="headings-bold inputs btnn" type="submit">
             Get Reset Link
           </Button>
           <Alert variant={statusMessage ? "danger" : null}>

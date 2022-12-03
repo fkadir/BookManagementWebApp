@@ -37,8 +37,9 @@ const BookCard = ({ allBooks }) => {
               bookItem={bookItem}
               onHide={() => setBookModalShow(false)}
             />
-            <Button
-              variant="light"
+
+            {/* <Button
+              className="btnn"
               onClick={() => {
                 setNotesModalShow(true);
                 setBookItem(book);
@@ -46,12 +47,12 @@ const BookCard = ({ allBooks }) => {
             >
               Notes
             </Button>
-            {/* Invoke Notes Mddal */}
+            Invoke Notes Mddal 
             <NotesModal
               modalShow={notesModalShow}
               bookItem={bookItem}
               onHide={() => setNotesModalShow(false)}
-            ></NotesModal>
+            ></NotesModal> */}
           </>
         );
       })}

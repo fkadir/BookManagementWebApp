@@ -78,11 +78,7 @@ const LoginAuth = () => {
           <p>
             <a href="./login/forgot">Forgot Your Password?</a>
           </p>
-          <Button
-            className="headings-bold inputs"
-            type="submit"
-            variant="light"
-          >
+          <Button className="headings-bold inputs btnn" type="submit">
             Login
           </Button>
           <Alert variant={statusMessage ? "danger" : null}>
