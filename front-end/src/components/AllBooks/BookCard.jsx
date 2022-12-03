@@ -1,24 +1,25 @@
 import React from "react";
 import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import BookModal from "./BookModal";
 import NotesModal from "../MyBooks/NotesModal";
+import ReadingStatusDropdown from "../StatusDropdown";
 import "./books.css";
 
 /* card with book preview and invokes a modal with full book details */
-const BookCard = ({ allBooks }) => {
+const BookCard = (props) => {
   const [bookModalShow, setBookModalShow] = useState(false);
   const [notesModalShow, setNotesModalShow] = useState(false);
   const [bookItem, setBookItem] = useState({});
 
   return (
     <>
-      {allBooks.map((book, index) => {
+      {props.allBooks.map((book, index) => {
         return (
           <>
             <div
               className="book-card"
-              //show modal on when card is clicked
+              //show modal when card is clicked
               onClick={() => {
                 setBookModalShow(true);
                 setBookItem(book);
@@ -42,8 +43,13 @@ const BookCard = ({ allBooks }) => {
               bookItem={bookItem}
               onHide={() => setBookModalShow(false)}
             />
-
-            {/* <Button
+            <ReadingStatusDropdown
+              bookID={book.bookID}
+              bookTitle={book.bookTitle}
+              bookAuthors={book.bookAuthors}
+              bookAvgRating={book.bookAvgRating}
+            />
+            <Button
               className="btnn"
               onClick={() => {
                 setNotesModalShow(true);
@@ -52,12 +58,12 @@ const BookCard = ({ allBooks }) => {
             >
               Notes
             </Button>
-            Invoke Notes Mddal 
+            {/* Invoke Notes Modal */}
             <NotesModal
               modalShow={notesModalShow}
               bookItem={bookItem}
               onHide={() => setNotesModalShow(false)}
-            ></NotesModal> */}
+            ></NotesModal>
           </>
         );
       })}

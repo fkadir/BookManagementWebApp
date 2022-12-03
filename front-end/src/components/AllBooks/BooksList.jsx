@@ -42,20 +42,13 @@ const BooksList = () => {
   const handleSearch = () => {
     fetch(`http://localhost:9000/books/search/${search}`)
       .then(
-        //fetching data from api port 9000
         (response) => response.json() //getting the response from the api in json. i.e changing to array
       )
       .then((data) => {
-        setBackendData(data); //setting backend data to data variable once gotten json
+        setBackendData(data); //setting data to data variable once gotten json
       });
   };
 
-  // const ScrollTop = () => {
-  //   //scroll to the top of the page
-  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  // };
-
-  /* display to user */
   return (
     <div>
       <h1 className="booklist-title"> All Books</h1>
@@ -76,11 +69,12 @@ const BooksList = () => {
         Search
       </Button>
 
-      {/* show cards */}
+      {/* show all books cards */}
       <div className="book-card-container">
         {<BookCard allBooks={backendData} />}
       </div>
 
+      {/* More button - pagination*/}
       <div>
         <Button className="btnn" onClick={handleMoreClick}>
           More...
