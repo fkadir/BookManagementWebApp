@@ -31,6 +31,9 @@ router.get("/", function (req, res, next) {
         bookAuthors: item.author,
         bookAvgRating: item.rating,
         bookStatus: item.status,
+        bookCover: item.cover,
+        bookSubtitle: item.subtitle,
+        bookDescription: item.description,
       }))
     );
   });

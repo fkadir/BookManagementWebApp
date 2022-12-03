@@ -10,10 +10,7 @@ var myBooksSchema = new Schema({
   status: String,
   rating: Number,
   notes: String,
-  cover: {
-    data: Buffer,
-    contentType: String,
-  },
+  cover: String,
   subtitle: String,
   description: String,
 });

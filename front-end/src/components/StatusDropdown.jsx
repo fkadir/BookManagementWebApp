@@ -1,19 +1,21 @@
 import { Dropdown, DropdownButton } from "react-bootstrap/";
-import axios from "axios";
-import useState from "react";
 
 /* reading status dropwdown component - to read, currently reading, read*/
 const ReadingStatusDropdown = (props) => {
+  console.log(props);
   const ReadingStatusHandler = (
     bookID,
     bookTitle,
     bookAuthors,
     status,
-    bookAvgRating
+    bookAvgRating,
+    bookCover,
+    bookSubtitle,
+    bookDescription
   ) => {
     getUser().then((data) => {
       const userID = data;
-      fetch(`http://localhost:3100/myBooks?user=${userID}`, {
+      fetch(`http://localhost:3100/myBooks`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -26,6 +28,9 @@ const ReadingStatusDropdown = (props) => {
           author: bookAuthors,
           status: status,
           rating: bookAvgRating,
+          cover: bookCover,
+          subtitle: bookSubtitle,
+          description: bookDescription,
         }),
       });
     });
