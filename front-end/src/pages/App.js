@@ -51,7 +51,7 @@ function App() {
           element: <Home />,
         },
         {
-          path: "my-books",
+          path: "mybooks",
           element: <MyBooks />,
         },
         {

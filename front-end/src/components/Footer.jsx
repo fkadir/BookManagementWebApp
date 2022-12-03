@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div>
           <h4>Links</h4>
-          <Card.Link href="/my-books"> My Books</Card.Link>
+          <Card.Link href="/mybooks"> My Books</Card.Link>
           <Card.Link href="/account-manage"> Account</Card.Link>
         </div>
       </Card.Body>

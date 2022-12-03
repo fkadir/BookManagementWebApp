@@ -1,7 +1,12 @@
 import BookCard from "../AllBooks/BookCard";
+import MyBooks from "../../pages/MyBooks.jsx";
 
-const MyBookContainerCard = () => {
-  return <div>{/* <BookCard /> */}</div>;
+const MyBookContainerCard = (props) => {
+  return (
+    <div className="book-card-container">
+      <BookCard allBooks={props.myBooksData} />
+    </div>
+  );
 };
 
 export default MyBookContainerCard;

@@ -75,7 +75,7 @@ const BooksList = () => {
         </Button>
       </Form>
 
-      {/* show cards */}
+      {/* show all books cards */}
       <div className="book-card-container">
         {<BookCard allBooks={backendData} />}
       </div>

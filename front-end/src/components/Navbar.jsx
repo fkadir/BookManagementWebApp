@@ -42,7 +42,7 @@ function NavbarComp() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end">
                   <Nav.Link href="/">Home</Nav.Link>
-                  <Nav.Link href="/my-books">My Books</Nav.Link>
+                  <Nav.Link href="/mybooks">My Books</Nav.Link>
                   <Nav.Link href="/account-manage">Account</Nav.Link>
                   <Button
                     variant="outline-success"
