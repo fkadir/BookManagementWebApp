@@ -25,20 +25,24 @@ const DeleteUser = (props) => {
   };
 
   // handle redirect
-  // if (deleted) {
-  //   return <Navigate to="/login" replace />;
-  // }
-
-  return (
-    <div>
-      <Button className="btnn" variant="outline-danger" onClick={handleDelete}>
-        Delete Account
-      </Button>
-      <Alert variant={statusMessage != "" ? "danger" : null}>
-        {statusMessage}
-      </Alert>
-    </div>
-  );
+  if (deleted) {
+    return <Navigate to="/login" replace />;
+  } else {
+    return (
+      <div>
+        <Button
+          className="btnn"
+          variant="outline-danger"
+          onClick={handleDelete}
+        >
+          Delete Account
+        </Button>
+        <Alert variant={statusMessage != "" ? "danger" : null}>
+          {statusMessage}
+        </Alert>
+      </div>
+    );
+  }
 };
 
 export default DeleteUser;

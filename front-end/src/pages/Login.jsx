@@ -28,14 +28,6 @@ function Login() {
         <Button variant="light" onClick={handleCreateAccount}>
           Create an account?{" "}
         </Button>
-        {/* for testing purposes */}
-        <Button
-          className="inputs"
-          variant="light"
-          onClick={localStorage.removeItem("token")}
-        >
-          LOGOUT{" "}
-        </Button>
       </div>
     );
   } else {
