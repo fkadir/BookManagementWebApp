@@ -23,7 +23,16 @@ router.get("/", function (req, res, next) {
     }
 
     console.log("returning my books.");
-    res.send(mybooks);
+    console.log(mybooks);
+    res.send(
+      mybooks.map((item) => ({
+        userId: item.userId,
+        bookTitle: item.title,
+        bookAuthors: item.author,
+        bookAvgRating: item.rating,
+        bookStatus: item.status,
+      }))
+    );
   });
 });
 

@@ -2,6 +2,7 @@ import { Dropdown, DropdownButton } from "react-bootstrap/";
 import axios from "axios";
 import useState from "react";
 
+/* reading status dropwdown component - to read, currently reading, read*/
 const ReadingStatusDropdown = (props) => {
   const ReadingStatusHandler = (
     bookID,
