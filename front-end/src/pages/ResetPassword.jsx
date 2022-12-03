@@ -59,7 +59,7 @@ const ResetPassword = (props) => {
     comp = (
       <div>
         <Logo />
-        <span>Password has been updated!</span>
+        <Alert variant="success">Password has been updated!</Alert>
       </div>
     );
   } else {

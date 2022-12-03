@@ -14,29 +14,6 @@ import Protected from "./Protected";
 
 function App() {
   // 2 routes; login and /
-
-  // protected thing
-  // const userAuth = () => {
-  //   var newState;
-  //   fetch(`http://localhost:3100/users/isUserAuth`, {
-  //     method: "GET",
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("token"),
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data.isLoggedIn);
-  //       if (data.isLoggedIn) {
-  //         console.log("true what");
-  //         newState = true;
-  //       } else {
-  //         console.log("false what");
-  //       }
-  //     });
-  //   return newState;
-  // };
-
   const router = createBrowserRouter([
     {
       path: "/",
