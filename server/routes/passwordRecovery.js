@@ -56,16 +56,26 @@ router.patch("/reset", (req, res, next) => {
 
     // update user's password by email
     var searchQuery = { email: requestResult[0].email };
-    User.updateOne(
-      searchQuery,
-      { $set: { password: req.body.password } }, //
-      function (err, updated) {
-        if (err) {
-          res.status(404);
-          res.send({ msg: "Password could not be updated" });
-        }
-      }
-    );
+
+    if (req.body.password) {
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(req.body.password, salt, function (err, hash) {
+          if (err)
+            res.status(400).json({ msg: "password could not be updated" });
+          req.body.password = hash;
+          User.updateOne(
+            searchQuery,
+            { $set: { password: req.body.password } }, //
+            function (err, updated) {
+              if (err) {
+                res.status(404);
+                res.send({ msg: "Password could not be updated" });
+              }
+            }
+          );
+        });
+      });
+    }
   });
 
   // delete reset request

@@ -37,7 +37,6 @@ const LoginAuth = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setStatusMessage(data.msg);
           localStorage.setItem("token", data.token);
           setIsLogin(data.success);
