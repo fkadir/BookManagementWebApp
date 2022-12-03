@@ -5,6 +5,7 @@ import CreateUser from "../components/Users/CreateUser";
 import LoginAuth from "../components/LoginAuth";
 import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
+import Footer from "../components/Footer.jsx";
 
 function Login() {
   // false = create account functionality, true = login functionality
@@ -28,6 +29,7 @@ function Login() {
         <Button className="btnn" onClick={handleCreateAccount}>
           Create an account?{" "}
         </Button>
+        <Footer />
       </div>
     );
   } else {
@@ -38,6 +40,7 @@ function Login() {
         <Button className="inputs btnn" onClick={handleSignIn}>
           Click here to login{" "}
         </Button>
+        <Footer />
       </div>
     );
   }

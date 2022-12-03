@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import Logo from "../components/Logo";
 import "./Login.css";
+import Footer from "../components/Footer.jsx";
 
 // code adapted from: https://github.com/coding-with-chaim/forgot-password-code/blob/master/client/src/routes/ResetPassword/index.js
 
@@ -41,6 +42,7 @@ const ForgotPassword = () => {
         <Alert variant="success">
           An email with reset instructions is on its way
         </Alert>
+        <Footer />
       </div>
     );
   } else {
@@ -65,6 +67,7 @@ const ForgotPassword = () => {
             {statusMessage}
           </Alert>
         </Form>
+        <Footer />
       </Container>
     );
   }

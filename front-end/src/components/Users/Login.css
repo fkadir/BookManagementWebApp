@@ -1,6 +1,5 @@
 .headings-bold {
   font-weight: 600;
-  margin: 2%;
 }
 
 .inputs {
@@ -28,15 +27,12 @@
   margin: 1%;
   border: none;
   background-color: #050a30;
-  text-decoration-color: white;
+  color: white;
 }
 
 .btnn:hover {
   background-color: #cae8ff;
-}
-
-.btnn::after {
-  background-color: #cae8ff;
+  color: #050a30;
 }
 
 .block {
@@ -49,4 +45,21 @@
 
 .nav .pad-0 {
   padding: 0;
+}
+
+.form-control {
+  background-color: #f9f9f8;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: #050a30;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #050a30;
+  text-decoration: underline;
 }

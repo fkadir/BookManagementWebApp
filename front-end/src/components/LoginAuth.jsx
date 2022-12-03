@@ -53,6 +53,7 @@ const LoginAuth = () => {
   } else {
     return (
       <Container fluid>
+        <h3> Login to your account</h3>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="inputs">
             <Form.Label className="headings-bold">Username</Form.Label>

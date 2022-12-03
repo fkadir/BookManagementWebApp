@@ -1,0 +1,16 @@
+.footer-bg {
+  background-color: #f9f9f8;
+  border: none;
+}
+
+.btnn-light {
+  background-color: #cae8ff;
+  color: #050a30;
+  border: none;
+}
+
+.btnn-light:hover {
+  background-color: #050a30;
+  color: #cae8ff;
+  border: none;
+}

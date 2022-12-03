@@ -76,6 +76,7 @@ const CreateUser = () => {
 
   return (
     <Container fluid>
+      <h3> Create an account</h3>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="inputs">
           <Form.Label className="headings-bold">Email address</Form.Label>

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Form, Card, Button } from "react-bootstrap";
 import BookCard from "./BookCard";
-// import { FaStar } from "react-icons/fa";
+import "./books.css";
 
 /* Component: displays all the books in the main page */
 
@@ -68,6 +68,7 @@ const BooksList = () => {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search for book title"
           className="me-2"
+          id="search"
           aria-label="Search"
         />
         <Button className="btnn" onClick={handleSearch}>

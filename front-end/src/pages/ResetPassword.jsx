@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useParams } from "react-router-dom";
+import Footer from "../components/Footer.jsx";
 
 // code adapted from: https://github.com/coding-with-chaim/forgot-password-code/blob/master/client/src/routes/ResetPassword/index.js and https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
 
@@ -60,6 +61,7 @@ const ResetPassword = (props) => {
       <div>
         <Logo />
         <Alert variant="success">Password has been updated!</Alert>
+        <Footer />
       </div>
     );
   } else {
@@ -96,6 +98,7 @@ const ResetPassword = (props) => {
             {statusMessage}
           </Alert>
         </Form>
+        <Footer />
       </Container>
     );
   }

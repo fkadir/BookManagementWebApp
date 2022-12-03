@@ -42,7 +42,7 @@
   background-color: #e6e3df;
 }
 
-.nav .pad-0 {
+.pad-0 {
   padding: 0;
 }
 
@@ -50,13 +50,14 @@
   margin: 1%;
   border: none;
   background-color: #050a30;
-  text-decoration-color: white;
+  color: white;
 }
 
 .btnn:hover {
   background-color: #cae8ff;
+  color: #050a30;
 }
 
-.bttn:active {
-  background-color: #cae8ff;
+.form-control {
+  background-color: #f9f9f8;
 }

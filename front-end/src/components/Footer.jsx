@@ -1,6 +1,7 @@
 import { React, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import logo from "../images/logo-nobg.png";
+import "./Footer.css";
 
 const Footer = () => {
   const ScrollTop = () => {
@@ -9,12 +10,15 @@ const Footer = () => {
   };
 
   return (
-    <Card bg="grey">
+    <Card className="footer-bg">
       <Card.Body>
         <Button className="btnn" size="lg" onClick={ScrollTop}>
           Back to the top
         </Button>
-        <div>
+        <div className="logo">
+          <Button className="btnn-light" href="/my-books">
+            My Books
+          </Button>
           <img
             width="100"
             height="100"
@@ -22,14 +26,12 @@ const Footer = () => {
             src={logo}
             alt="Bookmarked Logo"
           />
-        </div>
-        <div>
-          <h4>Links</h4>
-          <Card.Link href="/my-books"> My Books</Card.Link>
-          <Card.Link href="/account-manage"> Account</Card.Link>
+          <Button className="btnn-light" href="/account-manage">
+            My account
+          </Button>
         </div>
       </Card.Body>
-      <Card.Footer className="text-muted">
+      <Card.Footer className="text-muted footer-bg">
         <Card.Text>created by Nikole Inchoco & Fenna Kadir</Card.Text>
       </Card.Footer>
     </Card>

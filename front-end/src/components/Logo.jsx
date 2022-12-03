@@ -1,7 +1,6 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import React from "react";
 import logo from "../images/logo-nobg.png";
-import "./Navbar.css";
 import "./Users/Login.css";
 
 const Logo = () => {
