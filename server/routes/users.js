@@ -11,7 +11,7 @@ const { verifyJWT } = require("../controllers/verifyJWT");
 
 //code adapted from: https://dev.to/salarc123/mern-stack-authentication-tutorial-part-1-the-backend-1c57
 router.get("/isUserAuth", verifyJWT, (req, res, next) => {
-  res.json({ isLoggedIn: true, username: req.user.username });
+  res.json({ isLoggedIn: true, username: req.user.username, id: req.user.id });
 });
 
 /* get users */

@@ -9,7 +9,7 @@ exports.verifyJWT = (req, res, next) => {
       if (err)
         return res.json({ isLoggedIn: false, msg: "Failed to authenticate" });
       req.user = {};
-      req.user.id = decoded.id;
+      req.user.id = decoded.userId;
       req.user.username = decoded.username;
       next();
     });

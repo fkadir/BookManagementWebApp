@@ -9,6 +9,7 @@ var myBooksSchema = new Schema({
   author: Array,
   status: String,
   rating: Number,
+  notes: String,
 });
 
 // Create a model.

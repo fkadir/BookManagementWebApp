@@ -1,6 +1,5 @@
-// import MyBooksList from "../components/MyBooks/MyBooksList";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Card, Button } from "react-bootstrap";
 import BookCard from "../components/AllBooks/BookCard";
 import ReadingStatusDropdown from "../components/StatusDropdown";
@@ -12,15 +11,43 @@ const MyBooks = () => {
 
   //fetch data
   const fetchData = () => {
-    fetch(`http://localhost:9000/my-books/`)
-      .then(
-        //fetching data from api, based on the userID
-        (response) => response.json() //getting the response from the api in json. i.e changing to array
-      )
-      .then((data) => {
-        setMyBooksData(data); //setting backend data to data variable once gotten json
-      });
+    getUser().then((data) => {
+      const userID = data;
+      fetch(`http://localhost:3100/mybooks?user=${userID}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(
+          //fetching data from api, based on the userID
+          (response) => response.json() //getting the response from the api in json. i.e changing to array
+        )
+        .then((data) => {
+          //not sure how you want to format the data, so this is a start
+          console.log(data);
+          // setMyBooksData(data); //setting backend data to data variable once gotten json
+        });
+    });
   };
+
+  async function getUser() {
+    try {
+      const res = await fetch(`http://localhost:3100/users/isUserAuth`, {
+        method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      }).then((response) => response.json());
+      return res.id;
+    } catch (error) {
+      //error handling
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  });
 
   return (
     <div>
@@ -36,7 +63,6 @@ const MyBooks = () => {
       <div>
         <ReadingStatusDropdown />
       </div>
-      <div>Notes = modal??</div>
     </div>
   );
 };

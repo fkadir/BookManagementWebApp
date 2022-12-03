@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import BookModal from "./BookModal";
+import NotesModal from "../MyBooks/NotesModal";
 
 /* card with book preview and invokes a modal with full book details */
 const BookCard = ({ allBooks }) => {
-  const [modalShow, setModalShow] = useState(false);
+  const [bookModalShow, setBookModalShow] = useState(false);
+  const [notesModalShow, setNotesModalShow] = useState(false);
   const [bookItem, setBookItem] = useState({});
 
   return (
@@ -17,7 +19,7 @@ const BookCard = ({ allBooks }) => {
               className="book-card"
               //show modal on when card is clicked
               onClick={() => {
-                setModalShow(true);
+                setBookModalShow(true);
                 setBookItem(book);
               }}
               key={index}
@@ -31,10 +33,25 @@ const BookCard = ({ allBooks }) => {
             </div>
             {/*invoke book details modal*/}
             <BookModal
-              modalShow={modalShow}
+              modalShow={bookModalShow}
               bookItem={bookItem}
-              onHide={() => setModalShow(false)}
+              onHide={() => setBookModalShow(false)}
             />
+            <Button
+              variant="light"
+              onClick={() => {
+                setNotesModalShow(true);
+                setBookItem(book);
+              }}
+            >
+              Notes
+            </Button>
+            {/* Invoke Notes Mddal */}
+            <NotesModal
+              modalShow={notesModalShow}
+              bookItem={bookItem}
+              onHide={() => setNotesModalShow(false)}
+            ></NotesModal>
           </>
         );
       })}
