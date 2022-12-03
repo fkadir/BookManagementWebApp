@@ -14,14 +14,12 @@ const NotesModal = ({ modalShow, bookItem, onHide }) => {
         <Modal.Title id="contained-modal-title-vcenter">Notes</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p> TEST </p>
         <Form>
           <InputGroup>
             <Form.Control as="textarea" aria-label="With textarea" />
           </InputGroup>
         </Form>
       </Modal.Body>
-      <Button variant="outline-danger">Cancel</Button>
       <Button variant="outline-success">Save</Button>
     </Modal>
   );

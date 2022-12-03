@@ -48,8 +48,7 @@ router.post("/", function (req, res, next) {
             msg: "Account could not be created. Email might already be in use",
           });
         } else {
-          console.log("saved!");
-          res.send({ id: newUser._id, msg: "" });
+          res.send({ id: newUser._id, msg: "", confirm: "Account created!" });
         }
       });
     });
