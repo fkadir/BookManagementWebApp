@@ -71,10 +71,10 @@ const BooksList = () => {
           id="search"
           aria-label="Search"
         />
-        <Button className="btnn" onClick={handleSearch}>
-          Search
-        </Button>
       </Form>
+      <Button className="btnn" onClick={handleSearch}>
+        Search
+      </Button>
 
       {/* show cards */}
       <div className="book-card-container">
