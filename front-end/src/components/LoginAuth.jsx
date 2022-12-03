@@ -37,7 +37,6 @@ const LoginAuth = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setStatusMessage(data.msg);
           localStorage.setItem("token", data.token);
           setIsLogin(data.success);
@@ -47,28 +46,6 @@ const LoginAuth = () => {
       setStatusMessage("There was an error logging in");
     }
   }
-
-  // const userAuth = () => {
-  //   try {
-  //     fetch(`http://localhost:3100/users/isUserAuth`, {
-  //       method: "GET",
-  //       headers: {
-  //         "x-access-token": localStorage.getItem("token"),
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         // redirect or navigate to fk main page pls
-  //       });
-  //   } catch (error) {
-  //     setStatusMessage("Could not authenticate user");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   userAuth();
-  // });
 
   //handle redirect/navigate
   if (isLogin) {

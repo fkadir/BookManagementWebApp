@@ -10,6 +10,7 @@ import "./Login.css";
 //ref: code from createuser lab4
 const CreateUser = () => {
   const [statusMessage, setStatusMessage] = useState("");
+  const [confirmation, setConfirmation] = useState("");
   const formSchema = Yup.object().shape({
     email: Yup.string().email().required("email is mandatory"),
     username: Yup.string().required("username is mandatory"),
@@ -63,7 +64,10 @@ const CreateUser = () => {
         body: JSON.stringify(user),
       })
         .then((response) => response.json())
-        .then((data) => setStatusMessage(data.msg));
+        .then((data) => {
+          setStatusMessage(data.msg);
+          setConfirmation(data.confirm);
+        });
     } catch (err) {
       // Remediation logic
       setStatusMessage("There was an error creating the user");
@@ -125,6 +129,10 @@ const CreateUser = () => {
         <Alert variant={statusMessage != "" ? "danger" : null}>
           {" "}
           {statusMessage}
+        </Alert>
+        <Alert variant={confirmation != "" ? "success" : null}>
+          {" "}
+          {confirmation}
         </Alert>
       </Form>
     </Container>

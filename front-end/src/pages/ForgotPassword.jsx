@@ -38,7 +38,9 @@ const ForgotPassword = () => {
     comp = (
       <div>
         <Logo />
-        <span>An email with reset instructions is on its way</span>
+        <Alert variant="success">
+          An email with reset instructions is on its way
+        </Alert>
       </div>
     );
   } else {

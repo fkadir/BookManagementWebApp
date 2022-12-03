@@ -25,7 +25,7 @@ function Login() {
       <div>
         <Logo />
         <LoginAuth />
-        <Button variant="light" onClick={handleCreateAccount}>
+        <Button variant="outline-success" onClick={handleCreateAccount}>
           Create an account?{" "}
         </Button>
       </div>
@@ -35,8 +35,12 @@ function Login() {
       <div>
         <Logo />
         <CreateUser />
-        <Button className="inputs" variant="light" onClick={handleSignIn}>
-          Already have an account?{" "}
+        <Button
+          className="inputs"
+          variant="outline-success"
+          onClick={handleSignIn}
+        >
+          Click here to login{" "}
         </Button>
       </div>
     );

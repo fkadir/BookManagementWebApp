@@ -25,7 +25,7 @@ function sendResetLink(email, id) {
     from: "fennakadir@outlook.com",
     to: email,
     subject: "Reset password instructions",
-    text: `To reset your password, please click on this link: http://localhost:3100/login/reset/${id}`,
+    text: `To reset your password, please click on this link: http://localhost:3000/login/reset/${id}`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
