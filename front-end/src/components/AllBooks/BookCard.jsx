@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import BookModal from "./BookModal";
-import NotesModal from "../MyBooks/NotesModal";
 import ReadingStatusDropdown from "../StatusDropdown";
 import "./books.css";
 
@@ -24,53 +23,55 @@ const BookCard = (props) => {
       {props.allBooks.map((book, index) => {
         return (
           <>
-            <div
-              className="book-card"
-              //show modal when card is clicked
-              onClick={() => {
-                setBookModalShow(true);
-                setBookItem(book);
-              }}
-              key={index}
-            >
-              <img
-                className="bookcover"
-                src={book.bookCover}
-                alt="book cover"
-              />
-              <div className="card-info">
-                <h3 className="book-title">{book.bookTitle}</h3>
-                <p className="authors">{book.bookAuthors}</p>
-                <p className="avg-rating">{book.bookAvgRating}</p>
-              </div>
-            </div>
-            {/*invoke book details modal*/}
-            <BookModal
-              modalShow={bookModalShow}
-              bookItem={bookItem}
-              onHide={() => setBookModalShow(false)}
-            />
-            {/* invoke reading status drop down*/}
-            <ReadingStatusDropdown
-              bookID={book.bookId}
-              bookTitle={book.bookTitle}
-              bookSubtitle={book.bookSubtitle}
-              bookAuthors={book.bookAuthors}
-              bookAvgRating={book.bookAvgRating}
-              bookDescription={book.bookDescription}
-              bookCover={book.bookCover}
-            />
-            {/* delete button to remove a book from "my books" */}
-            {props.showDelete && (
-              <Button
-                className="btnn"
+            <Card border="secondary" style={{ width: "auto" }}>
+              <div
+                className="book-card"
+                //show modal when card is clicked
                 onClick={() => {
-                  deleteBook(book.id);
+                  setBookModalShow(true);
+                  setBookItem(book);
                 }}
+                key={index}
               >
-                Delete
-              </Button>
-            )}
+                <img
+                  className="bookcover"
+                  src={book.bookCover}
+                  alt="book cover"
+                />
+                <div className="card-info">
+                  <h3 className="book-title">{book.bookTitle}</h3>
+                  <p className="authors">{book.bookAuthors}</p>
+                  <p className="avg-rating">{book.bookAvgRating}</p>
+                </div>
+              </div>
+              {/*invoke book details modal*/}
+              <BookModal
+                modalShow={bookModalShow}
+                bookItem={bookItem}
+                onHide={() => setBookModalShow(false)}
+              />
+              {/* invoke reading status drop down*/}
+              <ReadingStatusDropdown
+                bookID={book.bookId}
+                bookTitle={book.bookTitle}
+                bookSubtitle={book.bookSubtitle}
+                bookAuthors={book.bookAuthors}
+                bookAvgRating={book.bookAvgRating}
+                bookDescription={book.bookDescription}
+                bookCover={book.bookCover}
+              />
+              {/* delete button to remove a book from "my books" */}
+              {props.showDelete && (
+                <Button
+                  className="btnn"
+                  onClick={() => {
+                    deleteBook(book.id);
+                  }}
+                >
+                  Delete
+                </Button>
+              )}
+            </Card>
           </>
         );
       })}
