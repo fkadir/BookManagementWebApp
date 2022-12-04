@@ -27,6 +27,7 @@ router.get("/", function (req, res, next) {
     res.send(
       mybooks.map((item) => ({
         userId: item.userId,
+        bookId: item.bookDataId,
         bookTitle: item.title,
         bookAuthors: item.author,
         bookAvgRating: item.rating,

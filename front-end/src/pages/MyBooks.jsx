@@ -34,8 +34,8 @@ const MyBooks = (props) => {
   //filter by status
   const filterStatusHandler = () => {
     getUser().then((data) => {
-      console.log(data);
-      console.log(myBooksData);
+      // console.log(data);
+      // console.log(myBooksData);
     });
   };
 

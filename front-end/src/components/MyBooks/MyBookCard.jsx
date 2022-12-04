@@ -1,13 +1,58 @@
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import BookCard from "../AllBooks/BookCard";
 import MyBooks from "../../pages/MyBooks.jsx";
+import NotesModal from "../MyBooks/NotesModal";
+import "../AllBooks/books.css";
+import ReadingStatusDropdown from "../StatusDropdown";
 // import ReactStars from "react-rating-stars-component";
 
 const MyBookContainerCard = (props) => {
+  const [notesModalShow, setNotesModalShow] = useState(false);
+
+  useEffect(() => {
+    console.log(props.myBooksData);
+  });
+
+  const handleNotes = (book) => {};
+
   const starRating = () => {};
   return (
-    <div className="book-card-container">
-      <BookCard allBooks={props.myBooksData} />
-    </div>
+    <>
+      {props.myBooksData.map((book, index) => {
+        return (
+          <>
+            <div className="book-card-container">
+              <BookCard book={book} />
+
+              {/* to do */}
+              <ReadingStatusDropdown
+              // bookID={book.bookID}
+              // bookTitle={book.bookTitle}
+              // bookAuthors={book.bookAuthors}
+              // bookAvgRating={book.bookAvgRating}
+              />
+              <Button
+                className="btnn"
+                onClick={() => {
+                  setNotesModalShow(true);
+                  handleNotes({ book });
+                }}
+              >
+                Notes
+              </Button>
+
+              {/* Invoke Notes Modal */}
+              <NotesModal
+                className="notes"
+                modalShow={notesModalShow}
+                onHide={() => setNotesModalShow(false)}
+              ></NotesModal>
+            </div>
+          </>
+        );
+      })}
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ var allBooksRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var myBooksRouter = require("./routes/myBooks");
 var pwRecoveryRouter = require("./routes/passwordRecovery");
+var myNotesRouter = require("./routes/mynotes");
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use("/books", allBooksRouter);
 app.use("/users", usersRouter);
 app.use("/mybooks", myBooksRouter);
 app.use("/pwrecovery", pwRecoveryRouter);
+app.use("/mynotes", myNotesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
