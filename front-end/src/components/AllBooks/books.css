@@ -21,3 +21,7 @@
 .bookcover {
   float: left;
 }
+
+.card-info {
+  text-align: center;
+}
