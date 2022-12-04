@@ -1,0 +1,28 @@
+.headings-bold {
+  font-weight: 600;
+  margin: 1rem;
+}
+
+.inputs {
+  text-align: center;
+}
+
+.alert {
+  margin: 0;
+}
+
+.form-control {
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+  text-align: center;
+}
+
+.nav {
+  background-color: #e6e3df;
+}

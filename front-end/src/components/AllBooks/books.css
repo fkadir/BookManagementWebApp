@@ -1,0 +1,23 @@
+#search {
+  padding: 0;
+  background-color: #f9f9f8;
+  margin-left: 1%;
+  min-width: 98%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.book-card {
+  padding: 0;
+  margin: 1rem;
+  display: inline-block;
+  width: 100%;
+}
+
+.book-card-container {
+  border: 2px;
+}
+
+.bookcover {
+  float: left;
+}
