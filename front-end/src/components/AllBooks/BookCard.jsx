@@ -8,7 +8,6 @@ import "./books.css";
 /* card with book preview & invokes a modal with full book details */
 const BookCard = (props) => {
   const [bookModalShow, setBookModalShow] = useState(false);
-  const [notesModalShow, setNotesModalShow] = useState(false);
   const [bookItem, setBookItem] = useState({});
 
   /* delete handler for deleting a book in my books, using the DB book id */
