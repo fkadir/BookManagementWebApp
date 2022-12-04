@@ -51,7 +51,7 @@ const BooksList = () => {
 
   return (
     <div>
-      <h1 className="booklist-title"> All Books</h1>
+      <h3 className="booklist-title"> All Books</h3>
 
       {/* search bar */}
       <Form className="d-flex">

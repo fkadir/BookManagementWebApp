@@ -21,3 +21,11 @@
 .bookcover {
   float: left;
 }
+
+.cr-sidebar {
+  float: left;
+}
+
+.cr-sidebar img {
+  float: none;
+}
