@@ -27,7 +27,7 @@ const bookMapper = (allBooks) => {
       : "Rating not available at this time",
 
     // check if thumbnail is null
-    bookcover: item.volumeInfo.imageLinks.thumbnail
+    bookCover: item.volumeInfo.imageLinks.thumbnail
       ? item.volumeInfo.imageLinks.thumbnail
       : null,
   }));

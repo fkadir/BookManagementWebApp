@@ -22,10 +22,9 @@ router.get("/", function (req, res, next) {
       res.send();
     }
 
-    console.log("returning my books.");
-    console.log(mybooks);
     res.send(
       mybooks.map((item) => ({
+        id: item._id,
         userId: item.userId,
         bookId: item.bookDataId,
         bookTitle: item.title,
@@ -42,18 +41,45 @@ router.get("/", function (req, res, next) {
 
 /*add to my books*/
 router.post("/", function (req, res, next) {
-  //in the req.body all input fields need to be specified (including title, author and ID from external API)
-  let newMyBook = new MyBooks(req.body);
-  newMyBook._id = mongoose.Types.ObjectId();
+  const searchQuery = {
+    userId: req.body.userId,
+    bookDataId: req.body.bookDataId,
+  };
 
-  newMyBook.save(function (err) {
+  const existingBook = MyBooks.findOne(searchQuery, function (err, myBook) {
     if (err) {
-      console.log(err);
       res.status(400);
       res.send();
+    }
+
+    if (myBook) {
+      MyBooks.updateOne(
+        searchQuery,
+        { $set: req.body },
+        function (err, updated) {
+          if (err) {
+            res.status(400);
+            res.send();
+          }
+          res.send(updated);
+        }
+      );
     } else {
-      console.log("saved!");
-      res.send({ id: newMyBook._id });
+      console.log("create book");
+      //in the req.body all input fields need to be specified (including title, author and ID from external API)
+      let newMyBook = new MyBooks(req.body);
+      newMyBook._id = mongoose.Types.ObjectId();
+
+      newMyBook.save(function (err) {
+        if (err) {
+          console.log("not saved!");
+          res.status(400);
+          res.send();
+        } else {
+          console.log("saved!");
+          res.send({ id: newMyBook._id });
+        }
+      });
     }
   });
 });

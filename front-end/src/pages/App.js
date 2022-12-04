@@ -8,13 +8,20 @@ import AccountManage from "./AccountManage";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
+import Protected from "./Protected";
+
+/*Page protection code adapted from https://www.makeuseof.com/create-protected-route-in-react/*/
 
 function App() {
   // 2 routes; login and /
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Container />,
+      element: (
+        // <Protected>
+        <Container />
+        // </Protected>
+      ),
       children: [
         {
           path: "",
