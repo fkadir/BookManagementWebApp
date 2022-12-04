@@ -17,20 +17,21 @@ const MyBookContainerCard = (props) => {
   const handleNotes = (book) => {};
 
   const starRating = () => {};
+
   return (
     <>
       {props.myBooksData.map((book, index) => {
         return (
           <>
             <div className="book-card-container">
+              <Button variant="danger">Danger</Button>
               <BookCard book={book} />
-
               {/* to do */}
               <ReadingStatusDropdown
-              // bookID={book.bookID}
-              // bookTitle={book.bookTitle}
-              // bookAuthors={book.bookAuthors}
-              // bookAvgRating={book.bookAvgRating}
+                bookID={book.bookID}
+                bookTitle={book.bookTitle}
+                bookAuthors={book.bookAuthors}
+                bookAvgRating={book.bookAvgRating}
               />
               <Button
                 className="btnn"
@@ -41,7 +42,6 @@ const MyBookContainerCard = (props) => {
               >
                 Notes
               </Button>
-
               {/* Invoke Notes Modal */}
               <NotesModal
                 className="notes"

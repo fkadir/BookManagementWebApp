@@ -71,7 +71,14 @@ const BooksList = () => {
 
       {/* show all books cards */}
       <div className="book-card-container">
-        {<BookCard allBooks={backendData} />}
+        {backendData.map((book, index) => {
+          return (
+            <div className="book-card-container">
+              <Button variant="danger">Danger</Button>
+              <BookCard book={book} />
+            </div>
+          );
+        })}
       </div>
 
       {/* More button - pagination*/}

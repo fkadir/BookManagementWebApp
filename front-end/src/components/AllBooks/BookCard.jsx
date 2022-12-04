@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import ReadingStatusDropdown from "../StatusDropdown";
 import BookModal from "./BookModal";
 
 /* card with book preview and invokes a modal with full book details */
@@ -18,6 +19,7 @@ const BookCard = (props) => {
           setBookItem(props.book);
         }}
       >
+        {/* optional chaining due to undefined properties = online */}
         <img
           className="bookcover"
           src={props.book.bookcover}
@@ -35,6 +37,7 @@ const BookCard = (props) => {
         bookItem={bookItem}
         onHide={() => setBookModalShow(false)}
       />
+      <ReadingStatusDropdown />
     </div>
   );
 };
