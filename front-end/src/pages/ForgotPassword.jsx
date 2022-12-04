@@ -6,7 +6,6 @@ import Footer from "../components/Footer.jsx";
 
 // code adapted from: https://github.com/coding-with-chaim/forgot-password-code/blob/master/client/src/routes/ResetPassword/index.js
 
-// wwwwhhyyyy does nodemailer not work god damn it
 const ForgotPassword = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [email, setEmail] = useState("");

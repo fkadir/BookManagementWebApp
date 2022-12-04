@@ -42,12 +42,11 @@ const LoginAuth = () => {
           setIsLogin(data.success);
         });
     } catch (err) {
-      // Remediation logic
+      // error handling
       setStatusMessage("There was an error logging in");
     }
   }
 
-  //handle redirect/navigate
   if (isLogin) {
     return <Navigate to="/" replace />;
   } else {

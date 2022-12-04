@@ -22,7 +22,11 @@ const BookCard = (props) => {
       {props.allBooks.map((book, index) => {
         return (
           <>
-            <Card border="secondary" style={{ width: "auto" }}>
+            <Card
+              className="text-left"
+              border="secondary"
+              style={{ width: "auto" }}
+            >
               <div
                 className="book-card"
                 //show modal when card is clicked
@@ -37,7 +41,7 @@ const BookCard = (props) => {
                   src={book.bookCover}
                   alt="book cover"
                 />
-                <div className="card-info">
+                <div className="card-info pad-left">
                   <h3 className="book-title">{book.bookTitle}</h3>
                   <p className="authors">{book.bookAuthors}</p>
                   <p className="avg-rating">{book.bookAvgRating}</p>

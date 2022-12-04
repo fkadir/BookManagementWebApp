@@ -10,8 +10,6 @@ import Footer from "../components/Footer.jsx";
 
 // code adapted from: https://github.com/coding-with-chaim/forgot-password-code/blob/master/client/src/routes/ResetPassword/index.js and https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
 
-//unadapted youtube: 6:25
-
 const ResetPassword = (props) => {
   const [statusMessage, setStatusMessage] = useState("");
   const [confirm, setConfirm] = useState(false);

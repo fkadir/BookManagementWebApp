@@ -12,7 +12,7 @@ const BooksList = () => {
 
   /* fetch all books data */
   const fetchData = (currentPage) => {
-    fetch(`http://localhost:9000/books/${currentPage}`)
+    fetch(`http://localhost:3100/books/${currentPage}`)
       .then(
         //fetching data from api port 9000
         (response) => response.json() //getting the response from the api in json. i.e changing to array

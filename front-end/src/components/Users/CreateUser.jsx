@@ -69,7 +69,7 @@ const CreateUser = () => {
           setConfirmation(data.confirm);
         });
     } catch (err) {
-      // Remediation logic
+      // error handling
       setStatusMessage("There was an error creating the user");
     }
   }

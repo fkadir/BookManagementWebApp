@@ -42,6 +42,7 @@ router.get("/:page", function (req, res, next) {
   )
     .then((response) => response.json()) //parsing to js object (changing to array)
     .then((allBooks) => {
+      console.log(allBooks.items);
       res.json(bookMapper(allBooks));
     }); // mapping json & the respond you send to the caller of your api
 });
