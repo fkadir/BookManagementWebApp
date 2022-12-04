@@ -1,12 +1,34 @@
 import BookCard from "../AllBooks/BookCard";
-import MyBooks from "../../pages/MyBooks.jsx";
-// import ReactStars from "react-rating-stars-component";
+import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
 
 const MyBookContainerCard = (props) => {
-  const starRating = () => {};
+  const [search, setSearch] = useState("");
+
+  // search bar for the user to search a book in their "my books"
   return (
     <div className="book-card-container">
-      <BookCard allBooks={props.myBooksData} />
+      <Form className="d-flex">
+        <Form.Control
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search for book title"
+          className="me-2"
+          id="search"
+          aria-label="Search"
+        />
+      </Form>
+      <Button className="btnn" onClick={() => props.refreshFunction(search)}>
+        Search
+      </Button>
+
+      {/* show user books & delete button (so they can remove a book from "my books" */}
+      <BookCard
+        allBooks={props.myBooksData}
+        showDelete={true}
+        refreshFunction={props.refreshFunction}
+      />
     </div>
   );
 };

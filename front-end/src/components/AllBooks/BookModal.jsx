@@ -16,7 +16,7 @@ const BookModal = ({ modalShow, bookItem, onHide }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <img src={bookItem.bookcover} alt="book cover" />
+        <img src={bookItem.bookCover} alt="book cover" />
         <h4 className="book-title">{bookItem.bookTitle}</h4>
         <h6 className="book-subtitle">{bookItem.Subtitle}</h6>
         <p className="authors">{bookItem.bookAuthors}</p>

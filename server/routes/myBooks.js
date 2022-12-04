@@ -9,7 +9,10 @@ router.get("/", function (req, res, next) {
 
   // filter mybooks by user, author, title and/or status
   if (req.query.title)
-    searchQuery = { userId: req.query.user, title: req.query.title };
+    searchQuery = {
+      userId: req.query.user,
+      title: { $regex: req.query.title, $options: "i" }, // i to ignore upper/lower cases, & regex is pattern matching in query for title; so user can search for a book
+    };
   else if (req.query.author)
     searchQuery = { userId: req.query.user, author: req.query.author };
   else if (req.query.status)
@@ -22,10 +25,9 @@ router.get("/", function (req, res, next) {
       res.send();
     }
 
-    console.log("returning my books.");
-    console.log(mybooks);
     res.send(
       mybooks.map((item) => ({
+        id: item._id,
         userId: item.userId,
         bookId: item.bookDataId,
         bookTitle: item.title,
@@ -42,18 +44,47 @@ router.get("/", function (req, res, next) {
 
 /*add to my books*/
 router.post("/", function (req, res, next) {
-  //in the req.body all input fields need to be specified (including title, author and ID from external API)
-  let newMyBook = new MyBooks(req.body);
-  newMyBook._id = mongoose.Types.ObjectId();
+  const searchQuery = {
+    userId: req.body.userId,
+    bookDataId: req.body.bookDataId,
+  };
 
-  newMyBook.save(function (err) {
+  // checking if book is already in "my books" (so no duplication is made in my books)
+  MyBooks.findOne(searchQuery, function (err, myBook) {
     if (err) {
-      console.log(err);
       res.status(400);
       res.send();
+    }
+
+    if (myBook) {
+      MyBooks.updateOne(
+        searchQuery,
+        { $set: req.body },
+        function (err, updated) {
+          if (err) {
+            res.status(400);
+            res.send();
+          }
+          res.send(updated);
+        }
+      );
     } else {
-      console.log("saved!");
-      res.send({ id: newMyBook._id });
+      console.log("create book");
+      //in the req.body all input fields need to be specified (including title, author and ID from external API)
+      let newMyBook = new MyBooks(req.body);
+      newMyBook._id = mongoose.Types.ObjectId();
+
+      newMyBook.save(function (err) {
+        if (err) {
+          console.log("not saved!");
+          console.error(err);
+          res.status(400);
+          res.send();
+        } else {
+          console.log("saved!");
+          res.send({ id: newMyBook._id });
+        }
+      });
     }
   });
 });
@@ -76,11 +107,10 @@ router.patch("/", function (req, res, next) {
 });
 
 /*delete from my books */
-router.delete("/", function (req, res, next) {
+router.delete("/:id", function (req, res, next) {
   let searchQuery = {};
 
-  //determine book my MyBooks_id
-  if (req.query.id) searchQuery = { _id: req.query.id };
+  searchQuery = { _id: req.params.id };
 
   MyBooks.deleteOne(searchQuery, function (err, deleted) {
     if (err) {

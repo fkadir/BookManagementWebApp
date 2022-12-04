@@ -1,4 +1,4 @@
-import { Dropdown, DropdownButton } from "react-bootstrap/";
+import { Dropdown } from "react-bootstrap/";
 
 /* reading status dropwdown component - to read, currently reading, read*/
 const ReadingStatusDropdown = (props) => {
@@ -15,7 +15,7 @@ const ReadingStatusDropdown = (props) => {
   ) => {
     getUser().then((data) => {
       const userID = data;
-      fetch(`http://localhost:3100/myBooks?user=${userID}`, {
+      fetch(`http://localhost:3100/myBooks`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -64,7 +64,10 @@ const ReadingStatusDropdown = (props) => {
               props.bookTitle,
               props.bookAuthors,
               "toRead",
-              props.bookAvgRating
+              props.bookAvgRating,
+              props.bookCover,
+              props.bookSubtitle,
+              props.bookDescription
             );
           }}
         >
@@ -77,7 +80,10 @@ const ReadingStatusDropdown = (props) => {
               props.bookTitle,
               props.bookAuthors,
               "Currently Reading",
-              props.bookAvgRating
+              props.bookAvgRating,
+              props.bookCover,
+              props.bookSubtitle,
+              props.bookDescription
             );
           }}
         >
@@ -90,7 +96,10 @@ const ReadingStatusDropdown = (props) => {
               props.bookTitle,
               props.bookAuthors,
               "Read",
-              props.bookAvgRating
+              props.bookAvgRating,
+              props.bookCover,
+              props.bookSubtitle,
+              props.bookDescription
             );
           }}
         >
