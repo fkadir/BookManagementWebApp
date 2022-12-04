@@ -8,7 +8,7 @@ var myBooksSchema = new Schema({
   title: String,
   author: Array,
   status: String,
-  rating: Number,
+  rating: String,
   notes: String,
   cover: String,
   subtitle: String,
