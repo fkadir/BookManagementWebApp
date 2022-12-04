@@ -23,7 +23,7 @@ const bookMapper = (allBooks) => {
       ? `Genre: ${item.volumeInfo.categories}`
       : " ",
     bookAvgRating: item.volumeInfo.averageRating //conditional: if this has rating; store in bookAvgRating, else display string
-      ? item.volumeInfo.averageRating
+      ? `Rating: ${item.volumeInfo.averageRating}`
       : "Rating not available at this time",
 
     // check if thumbnail is null
