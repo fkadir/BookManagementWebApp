@@ -1,8 +1,7 @@
-# BookManagementWebApp
 ## BookMarked
 ### General Info
 ***
-A mern stack webapp to track your books 
+A mern stack webapp to track and manage your books. Browse a catalogue of books that you can add and organise based on what you're currently reading, want to read or have read. 
 
 ## Installation
 ***
