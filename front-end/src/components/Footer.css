@@ -7,6 +7,10 @@
   background-color: #cae8ff;
   color: #050a30;
   border: none;
+  --bs-btn-active-color: #cae8ff;
+  --bs-btn-active-bg: #050a30;
+  --bs-btn-active-border-color: none;
+  --bs-btn-active-shadow: none;
 }
 
 .btnn-light:hover {

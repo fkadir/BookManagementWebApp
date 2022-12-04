@@ -28,6 +28,10 @@
   border: none;
   background-color: #050a30;
   color: white;
+  --bs-btn-active-color: #050a30;
+  --bs-btn-active-bg: #cae8ff;
+  --bs-btn-active-border-color: none;
+  --bs-btn-active-shadow: none;
 }
 
 .btnn:hover {

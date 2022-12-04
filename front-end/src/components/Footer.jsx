@@ -16,7 +16,7 @@ const Footer = () => {
           Back to the top
         </Button>
         <div className="logo">
-          <Button className="btnn-light" href="/my-books">
+          <Button className="btnn-light" href="/mybooks">
             My Books
           </Button>
           <img

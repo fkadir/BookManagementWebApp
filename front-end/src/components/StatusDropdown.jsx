@@ -52,7 +52,7 @@ const ReadingStatusDropdown = (props) => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle className="btnn" id="dropdown-basic">
         Reading Status
       </Dropdown.Toggle>
 
