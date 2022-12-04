@@ -10,12 +10,19 @@ import MyBookContainerCard from "../components/MyBooks/MyBookCard";
 /* User's books functionality */
 const MyBooks = (props) => {
   const [myBooksData, setMyBooksData] = useState([]);
+  const [userID, setUserID] = useState(null);
 
   // fetch user data
-  const fetchData = () => {
+  const fetchData = (title) => {
     getUser().then((data) => {
       const userID = data;
-      fetch(`http://localhost:3100/myBooks?user=${userID}`, {
+      let apiRoute = `http://localhost:3100/myBooks?user=${userID}`;
+
+      if (title) {
+        apiRoute += `&title=${title}`;
+      }
+
+      fetch(apiRoute, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -33,12 +40,19 @@ const MyBooks = (props) => {
 
   async function getUser() {
     try {
+      if (userID) {
+        return userID;
+      }
+
       const res = await fetch(`http://localhost:3100/users/isUserAuth`, {
         method: "GET",
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
       }).then((response) => response.json());
+
+      setUserID(res.id);
+
       return res.id;
     } catch (error) {
       //error handling
@@ -65,6 +79,7 @@ const MyBooks = (props) => {
         <MyBookContainerCard
           myBooksData={myBooksData}
           refreshFunction={fetchData}
+          userID={userID}
         />
       </div>
     </div>

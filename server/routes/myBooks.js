@@ -9,7 +9,10 @@ router.get("/", function (req, res, next) {
 
   // filter mybooks by user, author, title and/or status
   if (req.query.title)
-    searchQuery = { userId: req.query.user, title: req.query.title };
+    searchQuery = {
+      userId: req.query.user,
+      title: { $regex: req.query.title, $options: "i" }, // i to ignore case
+    };
   else if (req.query.author)
     searchQuery = { userId: req.query.user, author: req.query.author };
   else if (req.query.status)
