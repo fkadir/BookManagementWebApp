@@ -42,29 +42,38 @@ const CrSideBar = () => {
     getCR();
   });
 
-  return (
-    <div className="cr-sidebar">
-      <h3>Currently Reading</h3>
-      <>
-        {CR.map((book, index) => {
-          return (
-            <>
-              <img
-                className="bookcover"
-                src={book.bookcover}
-                alt="book cover"
-              />
-              <div className="card-info">
-                <p className="book-title">{book.bookTitle}</p>
-                <p className="authors">{book.bookAuthors}</p>
-                <p className="avg-rating">{book.bookAvgRating}</p>
-              </div>
-            </>
-          );
-        })}
-      </>
-    </div>
-  );
+  if (CR.length > 0) {
+    return (
+      <div className="cr-sidebar">
+        <h3>Currently Reading</h3>
+        <>
+          {CR.map((book, index) => {
+            return (
+              <>
+                <img
+                  className="bookcover"
+                  src={book.bookCover}
+                  alt="book cover"
+                />
+                <div className="card-info">
+                  <p className="book-title">{book.bookTitle}</p>
+                  <p className="authors">{book.bookAuthors}</p>
+                  <p className="avg-rating">{book.bookAvgRating}</p>
+                </div>
+              </>
+            );
+          })}
+        </>
+      </div>
+    );
+  } else {
+    return (
+      <div className="cr-sidebar">
+        <h3>Currently Reading</h3>
+        <p> You are currently reading no books. Shame on you!</p>
+      </div>
+    );
+  }
 };
 
 export default CrSideBar;

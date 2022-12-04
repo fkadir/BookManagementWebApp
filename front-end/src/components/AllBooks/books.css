@@ -24,8 +24,16 @@
 
 .cr-sidebar {
   float: left;
+  max-width: 20%;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
 }
 
 .cr-sidebar img {
   float: none;
+}
+
+.comps {
+  display: flex;
+  align-items: flex-start;
 }

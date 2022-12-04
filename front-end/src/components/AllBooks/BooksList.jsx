@@ -49,7 +49,7 @@ const BooksList = () => {
   };
 
   return (
-    <div>
+    <div className="bookslist">
       <h3 className="booklist-title"> All Books</h3>
 
       {/* search bar for all books */}
