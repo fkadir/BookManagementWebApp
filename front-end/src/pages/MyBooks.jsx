@@ -1,11 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import BookCard from "../components/AllBooks/BookCard";
-import ReadingStatusDropdown from "../components/StatusDropdown";
-import { Form, Button } from "react-bootstrap";
 import MyBookContainerCard from "../components/MyBooks/MyBookCard";
-
-// import MyBookContainerCard from "./MyBookCard";
 
 /* User's books functionality */
 const MyBooks = (props) => {
@@ -33,7 +28,7 @@ const MyBooks = (props) => {
           (response) => response.json() //getting the response from the api in json. i.e changing to array
         )
         .then((data) => {
-          setMyBooksData(data); //setting backend data to data variable once gotten json
+          setMyBooksData(data);
         });
     });
   };
@@ -63,25 +58,13 @@ const MyBooks = (props) => {
     fetchData();
   }, []);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  /*search & filter */
-
   return (
     <div>
-      {/* testing book cards */}
-      <div className="book-card-container">
-        {/* {<BookCard allBooks={myBooksData} />} */}
-        {/* BookCard */}
-      </div>
-
-      <div>
-        <MyBookContainerCard
-          myBooksData={myBooksData}
-          refreshFunction={fetchData}
-          userID={userID}
-        />
-      </div>
+      <MyBookContainerCard
+        myBooksData={myBooksData}
+        refreshFunction={fetchData}
+        userID={userID}
+      />
     </div>
   );
 };

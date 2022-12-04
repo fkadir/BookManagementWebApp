@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Form, Card, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import BookCard from "./BookCard";
 import "./books.css";
 
@@ -8,7 +8,6 @@ import "./books.css";
 
 const BooksList = () => {
   const [backendData, setBackendData] = useState([]);
-  // const [errorMessage, setErrorMessage] = useState("");
   const [search, setSearch] = useState("");
 
   /* fetch all books data */
@@ -38,7 +37,7 @@ const BooksList = () => {
     };
   };
 
-  /* handle book search */
+  /* handle ex api book search */
   const handleSearch = () => {
     fetch(`http://localhost:9000/books/search/${search}`)
       .then(
@@ -53,7 +52,7 @@ const BooksList = () => {
     <div>
       <h1 className="booklist-title"> All Books</h1>
 
-      {/* search bar */}
+      {/* search bar for all books */}
       <Form className="d-flex">
         <Form.Control
           type="search"

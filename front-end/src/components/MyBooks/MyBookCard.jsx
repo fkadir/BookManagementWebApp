@@ -1,11 +1,11 @@
 import BookCard from "../AllBooks/BookCard";
-import MyBooks from "../../pages/MyBooks.jsx";
 import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 
 const MyBookContainerCard = (props) => {
   const [search, setSearch] = useState("");
 
+  // search bar for the user to search a book in their "my books"
   return (
     <div className="book-card-container">
       <Form className="d-flex">
@@ -23,6 +23,7 @@ const MyBookContainerCard = (props) => {
         Search
       </Button>
 
+      {/* show user books & delete button (so they can remove a book from "my books" */}
       <BookCard
         allBooks={props.myBooksData}
         showDelete={true}

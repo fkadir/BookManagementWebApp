@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
   if (req.query.title)
     searchQuery = {
       userId: req.query.user,
-      title: { $regex: req.query.title, $options: "i" }, // i to ignore case
+      title: { $regex: req.query.title, $options: "i" }, // i to ignore upper/lower cases, & regex is pattern matching in query for title; so user can search for a book
     };
   else if (req.query.author)
     searchQuery = { userId: req.query.user, author: req.query.author };
@@ -49,6 +49,7 @@ router.post("/", function (req, res, next) {
     bookDataId: req.body.bookDataId,
   };
 
+  // checking if book is already in "my books" (so no duplication is made in my books)
   MyBooks.findOne(searchQuery, function (err, myBook) {
     if (err) {
       res.status(400);
