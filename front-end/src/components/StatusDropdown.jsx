@@ -15,7 +15,7 @@ const ReadingStatusDropdown = (props) => {
   ) => {
     getUser().then((data) => {
       const userID = data;
-      fetch(`http://localhost:3100/myBooks`, {
+      fetch(`http://localhost:3100/myBooks?user=${userID}`, {
         method: "POST",
         headers: {
           Accept: "application/json",
