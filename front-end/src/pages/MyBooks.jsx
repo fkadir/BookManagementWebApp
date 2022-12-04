@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Dropdown } from "react-bootstrap";
 import MyBookContainerCard from "../components/MyBooks/MyBookCard";
 
 /* User's books functionality */
@@ -33,6 +34,26 @@ const MyBooks = (props) => {
     });
   };
 
+  //filter by status
+  const filterStatusHandler = (newStatus) => {
+    getUser().then((data) => {
+      const userID = data;
+      fetch(
+        `http://localhost:3100/myBooks?status=${newStatus}&user=${userID}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setMyBooksData(data);
+        });
+    });
+  };
+
   async function getUser() {
     try {
       if (userID) {
@@ -60,6 +81,36 @@ const MyBooks = (props) => {
 
   return (
     <div>
+      {/* filter by status */}
+      <Dropdown>
+        <Dropdown.Toggle className="btnn" id="dropdown-basic">
+          Filter by Reading Status
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item
+            onClick={() => {
+              filterStatusHandler("toRead");
+            }}
+          >
+            To Read
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              filterStatusHandler("Currently Reading");
+            }}
+          >
+            Currently Reading
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              filterStatusHandler("Read");
+            }}
+          >
+            Read
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
       <MyBookContainerCard
         myBooksData={myBooksData}
         refreshFunction={fetchData}

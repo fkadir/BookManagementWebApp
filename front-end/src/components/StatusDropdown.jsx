@@ -2,7 +2,6 @@ import { Dropdown } from "react-bootstrap/";
 
 /* reading status dropwdown component - to read, currently reading, read*/
 const ReadingStatusDropdown = (props) => {
-  console.log(props);
   const ReadingStatusHandler = (
     bookID,
     bookTitle,

@@ -49,8 +49,8 @@ const BooksList = () => {
   };
 
   return (
-    <div>
-      <h1 className="booklist-title"> All Books</h1>
+    <div className="bookslist">
+      <h3 className="booklist-title"> All Books</h3>
 
       {/* search bar for all books */}
       <Form className="d-flex">
