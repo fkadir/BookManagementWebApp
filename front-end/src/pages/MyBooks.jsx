@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import BookCard from "../components/AllBooks/BookCard";
-import ReadingStatusDropdown from "../components/StatusDropdown";
+import { Dropdown } from "react-bootstrap/";
 import { Form, Button } from "react-bootstrap";
 import MyBookContainerCard from "../components/MyBooks/MyBookCard";
 
@@ -31,6 +31,14 @@ const MyBooks = (props) => {
     });
   };
 
+  //filter by status
+  const filterStatusHandler = () => {
+    getUser().then((data) => {
+      console.log(data);
+      console.log(myBooksData);
+    });
+  };
+
   async function getUser() {
     try {
       const res = await fetch(`http://localhost:3100/users/isUserAuth`, {
@@ -55,6 +63,37 @@ const MyBooks = (props) => {
 
   return (
     <div>
+      {/* filter by status */}
+      <Dropdown>
+        <Dropdown.Toggle className="btnn" id="dropdown-basic">
+          Filter by Reading Status
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item
+            onClick={() => {
+              filterStatusHandler();
+            }}
+          >
+            To Read
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              filterStatusHandler();
+            }}
+          >
+            Currently Reading
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              filterStatusHandler();
+            }}
+          >
+            Read
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
       {/* testing book cards */}
       <div className="book-card-container">
         {/* {<BookCard allBooks={myBooksData} />} */}
@@ -63,9 +102,6 @@ const MyBooks = (props) => {
 
       <div>
         <MyBookContainerCard myBooksData={myBooksData} />
-      </div>
-      <div>
-        <ReadingStatusDropdown />
       </div>
     </div>
   );

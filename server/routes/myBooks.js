@@ -47,7 +47,7 @@ router.post("/", function (req, res, next) {
 
   newMyBook.save(function (err) {
     if (err) {
-      console.log("not saved!");
+      console.log(err);
       res.status(400);
       res.send();
     } else {
