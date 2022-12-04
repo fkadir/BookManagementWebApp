@@ -10,12 +10,6 @@ import ReadingStatusDropdown from "../StatusDropdown";
 const MyBookContainerCard = (props) => {
   const [notesModalShow, setNotesModalShow] = useState(false);
 
-  useEffect(() => {
-    console.log(props.myBooksData);
-  });
-
-  const handleNotes = (book) => {};
-
   const starRating = () => {};
 
   return (
@@ -37,13 +31,13 @@ const MyBookContainerCard = (props) => {
                 className="btnn"
                 onClick={() => {
                   setNotesModalShow(true);
-                  handleNotes({ book });
                 }}
               >
                 Notes
               </Button>
               {/* Invoke Notes Modal */}
               <NotesModal
+                book={book}
                 className="notes"
                 modalShow={notesModalShow}
                 onHide={() => setNotesModalShow(false)}

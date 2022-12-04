@@ -13,7 +13,10 @@ router.get("/", function (req, res, next) {
     }
 
     MyNotes.find(searchQuery, function (err, result) {
-      res.send({ notes: result[0].notes, msg: "" });
+      if (result.length === 0) res.send({ msg: "newNote" });
+      else {
+        res.send({ notes: result[0].notes, msg: "" });
+      }
     });
   } catch (error) {
     res.status(404).json({ msg: "notes could not be found" });
