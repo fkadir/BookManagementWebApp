@@ -6,7 +6,11 @@ import { Button } from "react-bootstrap";
 const MyBookContainerCard = (props) => {
   return (
     <div className="book-card-container">
-      <BookCard allBooks={props.myBooksData} />
+      <BookCard
+        allBooks={props.myBooksData}
+        showDelete={true}
+        refreshFunction={props.refreshFunction}
+      />
     </div>
   );
 };

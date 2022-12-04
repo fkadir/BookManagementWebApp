@@ -46,7 +46,7 @@ router.post("/", function (req, res, next) {
     bookDataId: req.body.bookDataId,
   };
 
-  const existingBook = MyBooks.findOne(searchQuery, function (err, myBook) {
+  MyBooks.findOne(searchQuery, function (err, myBook) {
     if (err) {
       res.status(400);
       res.send();
@@ -73,6 +73,7 @@ router.post("/", function (req, res, next) {
       newMyBook.save(function (err) {
         if (err) {
           console.log("not saved!");
+          console.error(err);
           res.status(400);
           res.send();
         } else {
@@ -102,11 +103,10 @@ router.patch("/", function (req, res, next) {
 });
 
 /*delete from my books */
-router.delete("/", function (req, res, next) {
+router.delete("/:id", function (req, res, next) {
   let searchQuery = {};
 
-  //determine book my MyBooks_id
-  if (req.query.id) searchQuery = { _id: req.query.id };
+  searchQuery = { _id: req.params.id };
 
   MyBooks.deleteOne(searchQuery, function (err, deleted) {
     if (err) {

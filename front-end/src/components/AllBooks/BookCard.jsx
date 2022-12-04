@@ -12,6 +12,12 @@ const BookCard = (props) => {
   const [notesModalShow, setNotesModalShow] = useState(false);
   const [bookItem, setBookItem] = useState({});
 
+  const deleteBook = (id) => {
+    fetch(`http://localhost:3100/myBooks/${id}`, { method: "DELETE" }).then(
+      () => props.refreshFunction()
+    );
+  };
+
   return (
     <>
       {props.allBooks.map((book, index) => {
@@ -52,21 +58,17 @@ const BookCard = (props) => {
               bookDescription={book.bookDescription}
               bookCover={book.bookCover}
             />
-            <Button
-              className="btnn"
-              onClick={() => {
-                setNotesModalShow(true);
-                setBookItem(book);
-              }}
-            >
-              Notes
-            </Button>
-            {/* Invoke Notes Modal */}
-            <NotesModal
-              modalShow={notesModalShow}
-              bookItem={bookItem}
-              onHide={() => setNotesModalShow(false)}
-            ></NotesModal>
+
+            {props.showDelete && (
+              <Button
+                className="btnn"
+                onClick={() => {
+                  deleteBook(book.id);
+                }}
+              >
+                Delete
+              </Button>
+            )}
           </>
         );
       })}

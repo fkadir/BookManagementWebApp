@@ -62,7 +62,10 @@ const MyBooks = (props) => {
       </div>
 
       <div>
-        <MyBookContainerCard myBooksData={myBooksData} />
+        <MyBookContainerCard
+          myBooksData={myBooksData}
+          refreshFunction={fetchData}
+        />
       </div>
     </div>
   );
