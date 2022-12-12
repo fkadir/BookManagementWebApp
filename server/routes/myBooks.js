@@ -19,12 +19,14 @@ router.get("/", function (req, res, next) {
     searchQuery = { userId: req.query.user, status: req.query.status };
   else if (req.query.user) searchQuery = { userId: req.query.user };
 
+  // find the book based on the query
   MyBooks.find(searchQuery, function (err, mybooks) {
     if (err) {
       res.status(400);
       res.send();
     }
 
+    // send response
     res.send(
       mybooks.map((item) => ({
         id: item._id,
@@ -43,6 +45,7 @@ router.get("/", function (req, res, next) {
 });
 
 /*add to my books*/
+// passing in from front end
 router.post("/", function (req, res, next) {
   const searchQuery = {
     userId: req.body.userId,
@@ -50,16 +53,19 @@ router.post("/", function (req, res, next) {
   };
 
   // checking if book is already in "my books" (so no duplication is made in my books)
+  // call back (the function) has either error or the book
   MyBooks.findOne(searchQuery, function (err, myBook) {
+    //find the book
     if (err) {
       res.status(400);
       res.send();
     }
 
+    // updating the book in allBooks from db
     if (myBook) {
       MyBooks.updateOne(
         searchQuery,
-        { $set: req.body },
+        { $set: req.body }, //set details from whatever in the body
         function (err, updated) {
           if (err) {
             res.status(400);
@@ -69,7 +75,7 @@ router.post("/", function (req, res, next) {
         }
       );
     } else {
-      console.log("create book");
+      console.log("create book"); //create new book
       //in the req.body all input fields need to be specified (including title, author and ID from external API)
       let newMyBook = new MyBooks(req.body);
       newMyBook._id = mongoose.Types.ObjectId();

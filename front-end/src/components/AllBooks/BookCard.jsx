@@ -10,10 +10,10 @@ const BookCard = (props) => {
   const [bookModalShow, setBookModalShow] = useState(false);
   const [bookItem, setBookItem] = useState({});
 
-  /* delete handler for deleting a book in my books, using the DB book id */
+  /* delete handler for deleting a book in my books, using the DB mybooks book id */
   const deleteBook = (id) => {
     fetch(`http://localhost:3100/myBooks/${id}`, { method: "DELETE" }).then(
-      () => props.refreshFunction()
+      () => props.refreshFunction() //refreshes my book list when you delete;  when this gets called, goes back to MyBooks; and calls FetchData
     );
   };
 

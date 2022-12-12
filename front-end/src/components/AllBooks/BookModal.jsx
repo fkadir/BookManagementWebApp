@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 /* modal of full book details (i.e a pop up of books details when you click the BookCard) */
 const BookModal = ({ modalShow, bookItem, onHide }) => {

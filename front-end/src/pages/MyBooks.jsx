@@ -14,11 +14,12 @@ const MyBooks = (props) => {
       const userID = data;
       let apiRoute = `http://localhost:3100/myBooks?user=${userID}`;
 
-      // if the user is search by
+      // If the user is searching by title; add it to the query
       if (title) {
         apiRoute += `&title=${title}`;
       }
 
+      // getting books based on the the userID and title
       fetch(apiRoute, {
         method: "GET",
         headers: {
@@ -55,6 +56,7 @@ const MyBooks = (props) => {
     });
   };
 
+  //getting user
   async function getUser() {
     try {
       if (userID) {
@@ -114,7 +116,7 @@ const MyBooks = (props) => {
       </Dropdown>
       <MyBookContainerCard
         myBooksData={myBooksData}
-        refreshFunction={fetchData}
+        refreshFunction={fetchData} //the function that gets called on referesh
         userID={userID}
       />
     </div>
