@@ -8,12 +8,13 @@ const MyBooks = (props) => {
   const [myBooksData, setMyBooksData] = useState([]);
   const [userID, setUserID] = useState(null);
 
-  // fetch user data
+  // fetch books based on user ID
   const fetchData = (title) => {
     getUser().then((data) => {
       const userID = data;
       let apiRoute = `http://localhost:3100/myBooks?user=${userID}`;
 
+      // if the user is search by
       if (title) {
         apiRoute += `&title=${title}`;
       }
